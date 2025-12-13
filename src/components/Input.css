@@ -1,0 +1,116 @@
+.input-bar {
+  border-radius: 10px;
+  padding: 10px;
+  width: 500px;
+  margin-bottom: 10px;
+
+  border: none;
+  box-shadow: 0px 0px 2px rgb(112, 0, 112);
+  transition: box-shadow 0.3s;
+}
+
+.input-bar:hover {
+  box-shadow: 0px 0px 4px rgb(145, 5, 145);
+}
+
+.main-inp-div {
+  display: flex;
+  width: 500px;
+  box-shadow: 0px 0px 2px gray;
+  border-radius: 10px;
+  margin-bottom: 10px;
+
+  animation: mainInputDivAnimation;
+  animation-duration: 1s;
+}
+
+@keyframes mainInputDivAnimation {
+  0% {
+    border-radius: 10px;
+    padding: 10px;
+    width: 500px;
+    margin-bottom: 10px;
+
+    border: none;
+  }
+  100% {
+    width: 500px;
+    box-shadow: 0px 0px 2px gray;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.input-div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  width: 85px;
+  padding: 10px;
+  gap: 5px;
+}
+
+.title-input-bar {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 2px;
+  border: none;
+  outline: none;
+  transition: box-shadow 0.35s;
+}
+
+.title-input-bar:hover {
+  box-shadow: 0px 0px 2px purple;
+}
+
+.title-input-bar:focus {
+  box-shadow: 0px 0px 2px purple;
+}
+
+.note-input-box {
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  outline: none;
+}
+
+.add-button {
+  color: white;
+  font-weight: bold;
+  background-color: rgb(100, 5, 188);
+  border: rgb(151, 53, 243);
+  padding: 10px;
+  border-radius: 8px;
+
+  transition: opacity 0.15s;
+}
+
+.add-button:hover {
+  opacity: 0.7;
+}
+
+.add-button:active {
+  opacity: 0.5;
+}
+
+.close-button {
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.close-button:hover {
+  opacity: 0.7;
+}
+
+.close-button:active {
+  opacity: 0.5;
+}

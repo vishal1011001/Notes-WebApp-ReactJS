@@ -1,0 +1,78 @@
+.all-notes-div {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+
+.note-div {
+  flex-basis: calc(100%/4);
+  border-color: rgba(0, 0, 0, 0.45);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 10px;
+  padding-bottom: 25px;
+  width: 33vw;
+
+  position: relative;
+
+  max-width: 350px;
+  min-width: 170px;
+
+  transition: box-shadow 0.15s;
+
+  animation: noteRenderAnimation;
+  animation-duration: 0.6s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.note-div.dark-mode {
+  border-color: rgb(235, 191, 255);
+}
+
+.note-div:hover {
+  box-shadow: 0px 0px 3px purple;
+}
+.note-div.dark-mode:hover {
+  box-shadow: 0px 0px 6px rgb(255, 0, 255);
+}
+
+.delete-button {
+  background-color: rgb(93, 13, 168);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  margin-top: 5px;
+
+  transition: opacity 0.15s;
+}
+
+.delete-button:hover {
+  opacity: 0.7;
+}
+
+.delete-button:active {
+  opacity: 0.5;
+}
+
+.note-title {
+  margin-top: 0;
+}
+
+@keyframes noteRenderAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
