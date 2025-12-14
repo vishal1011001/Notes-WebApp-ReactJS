@@ -6,7 +6,7 @@
 
   border: none;
   box-shadow: 0px 0px 2px rgb(112, 0, 112);
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.2s ease;
 }
 
 .input-bar:hover {
@@ -62,7 +62,7 @@
   margin-bottom: 2px;
   border: none;
   outline: none;
-  transition: box-shadow 0.35s;
+  transition: box-shadow 0.15s ease;
 }
 
 .title-input-bar:hover {
