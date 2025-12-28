@@ -32,6 +32,12 @@ export function Input({ notes, setNotes }) {
     setTitleInput('');
   }
 
+  const handleKeyDown = (event) => {
+    if(event.key === 'Enter') {
+      addNote();
+    } 
+  }
+
   if (!isExpanded) {
     return (
       <div>
@@ -54,13 +60,14 @@ export function Input({ notes, setNotes }) {
           placeholder="Enter title"
           value={titleInput}
           onChange={saveTitleInput}
+          onKeyDown={handleKeyDown}
         />
         <input
           className="note-input-box"
           placeholder="Enter your memo..."
           value={noteInput}
           onChange={saveNoteInput}
-          
+          onKeyDown={handleKeyDown}
         />
       </div>
       <div className="input-buttons">
