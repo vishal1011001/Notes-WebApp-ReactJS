@@ -40,7 +40,9 @@
   box-shadow: 0px 0px 6px rgb(255, 0, 255);
 }
 
-.delete-button {
+.delete-button,
+.edit-button,
+.cancel-button {
   background-color: rgb(93, 13, 168);
   color: white;
   border: none;
@@ -54,17 +56,64 @@
   transition: opacity 0.15s;
 }
 
-.delete-button:hover {
+.delete-button:hover,
+.edit-button:hover,
+.cancel-button:hover {
   opacity: 0.7;
 }
 
-.delete-button:active {
+.delete-button:active, 
+.edit-button:active,
+.cancel-button:active {
   opacity: 0.5;
 }
 
 .note-title {
   margin-top: 0;
 }
+
+/* Edit functionality */
+.edit-button,
+.cancel-button {
+  left: 8px;
+  width: 8%;
+  padding: 5px 5px;
+  padding-bottom: 2px;
+}
+
+.cancel-button {
+  width: 15%;
+  padding-bottom: 5px;
+}
+
+.edit-title-bar, 
+.edit-note-bar {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  width: 90%;
+}
+
+.edit-note-bar {
+  height: 50%;
+  margin-top: 3px;
+}
+
+.edit-save-button {
+  background-color: white;
+  color: purple;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 8px;
+  font-size: 15px;
+  margin-top: 5px;
+
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 8px;
+}
+
 
 @keyframes noteRenderAnimation {
   0% {
