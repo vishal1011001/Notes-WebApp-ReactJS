@@ -8,18 +8,18 @@
 
 .note-div {
   flex-basis: calc(100%/4);
+
   border-color: rgba(0, 0, 0, 0.45);
   border-width: 1px;
   border-style: solid;
   border-radius: 10px;
   padding: 10px;
   padding-bottom: 25px;
-  width: 33vw;
-
+  
   position: relative;
-
-  max-width: 350px;
-  min-width: 170px;
+  
+  min-width: 23vw;
+  min-height: 15vh;
 
   transition: box-shadow 0.15s;
 
@@ -103,6 +103,7 @@
   background-color: white;
   color: purple;
   border: none;
+  box-shadow: 0px 0px 1px rgb(93, 13, 168);
   border-radius: 5px;
   padding: 4px 8px;
   font-size: 15px;
@@ -112,6 +113,13 @@
   left: 50%;
   transform: translate(-50%);
   bottom: 8px;
+
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.edit-save-button:hover {
+  background-color: purple;
+  color: white;
 }
 
 

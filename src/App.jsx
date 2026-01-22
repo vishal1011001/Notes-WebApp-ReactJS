@@ -7,14 +7,35 @@ import themeContext from "./components/Theme";
 function App() {
   const { isDarkMode, toggleTheme } = useContext(themeContext);
 
-  const [notes, setNotes] = useState(() => {
-    const savedNotes = localStorage.getItem('notes');
-    return savedNotes ? JSON.parse(savedNotes) : [];
-  });
+  const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem('notes', JSON.stringify(notes));
-  }, [notes]);
+    const fetchNotes = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/notes', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+        console.log('Response status:', response.status);
+
+        if(response.ok) {
+          const data = await response.json();
+          console.log('Fetched data:', data);
+          setNotes(data);
+        } else {
+          console.error('Response not ok:', response.status);
+        }
+      } catch (error) {
+        console.error('Error fetching notes:', error);
+      }
+    }
+
+    fetchNotes();
+
+  }, []);
+
 
   return (
     <div className={`main-div ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>

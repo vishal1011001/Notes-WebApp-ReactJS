@@ -2,8 +2,22 @@ import './RenderNotes.css';
 import {useState} from 'react';
 
 export function RenderNotes({notes, setNotes, isDarkMode}) {
-  function deleteNote(id) {
-    setNotes(prev => prev.filter(note => note.id !== id));
+  const deleteNote = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/notes/${id}`, {
+        method: 'DELETE'
+      });
+
+      if(response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setNotes(data);
+      }
+
+    } catch (error) {
+      console.error('Error deleting note:', error);
+    }
+
   }
 
   if(!Array.isArray(notes) || notes.length === 0) {
@@ -12,8 +26,36 @@ export function RenderNotes({notes, setNotes, isDarkMode}) {
     );
   }
 
+  const editReqSend = async () => {
+    try {
+      const editedNote = {
+        id: editID,
+        title: editTitle,
+        note: editText
+      };
+
+      const response = await fetch(`http://localhost:5000/notes/${editID}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(editedNote)
+      });
+
+      if(response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setNotes(data);
+      }
+
+
+    } catch (error) {
+      console.error("Error updating note:", error);
+    }
+  }
+
   const [isEditing, setIsEditing] = useState(false);
-  const [editID, setEditID] = useState('');
+  const [editID, setEditID] = useState('0');
   const [editText, setEditText] = useState('');
   const [editTitle, setEditTitle] = useState('');
 
@@ -28,22 +70,17 @@ export function RenderNotes({notes, setNotes, isDarkMode}) {
     setIsEditing(!isEditing);
     setEditID(id);
 
-    const current = notes.find(note => note.id === id);
-    setEditTitle(current.title);
-    setEditText(current.note);
+    if(id !== '0') {
+      const current = notes.find(note => note.id === id);
+      setEditTitle(current.title);
+      setEditText(current.note);
+    }
   }
 
-  const saveEdit = () => {
-    const updatedNotes = notes.map((elem) => {
-      if(elem.id === editID) {
-        return {id: editID, title: editTitle, note: editText};
-      }
-      return elem;
-    });
+  const saveEdit = async () => {
+    await editReqSend();
 
-    setNotes(updatedNotes);
-
-    changeIsEditing(0);
+    changeIsEditing('0');
   };
 
   const handleKeyDown = (event) => {

@@ -14,13 +14,39 @@ export function Input({ notes, setNotes }) {
     setNoteInput(event.target.value);
   }
 
-  function addNote() {
+  const createNote = async () => {
+    try {
+      const newNote = {
+        id: notes.length + 1,
+        title: titleInput,
+        note: noteInput
+      };
+
+      const response = await fetch('http://localhost:5000/notes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newNote)
+      })
+      console.log(response.status);
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Fetched data:", data);
+        setNotes(data);
+      }
+
+    } catch (error) {
+      console.error('Error creating new note:', error);
+    }
+  };
+
+  async function addNote() {
     if (!noteInput.trim()) return;
-    setNotes([...notes, {
-      id: crypto.randomUUID(),
-      title: titleInput.trim(),
-      note: noteInput.trim()
-    }]);
+
+    await createNote();
+
     setNoteInput('');
     setTitleInput('');
     setIsExpanded(false);
@@ -33,9 +59,9 @@ export function Input({ notes, setNotes }) {
   }
 
   const handleKeyDown = (event) => {
-    if(event.key === 'Enter') {
+    if (event.key === 'Enter') {
       addNote();
-    } 
+    }
   }
 
   if (!isExpanded) {
@@ -45,8 +71,6 @@ export function Input({ notes, setNotes }) {
           className="input-bar"
           placeholder="Take a memo"
           onFocus={() => setIsExpanded(true)}
-          readOnly={false}
-          value={noteInput}
         />
       </div>
     );
