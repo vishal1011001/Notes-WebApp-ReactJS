@@ -3,6 +3,7 @@ import { Input } from "./components/Input";
 import { RenderNotes } from "./components/RenderNotes";
 import './App.css';
 import themeContext from "./components/Theme";
+import { Search } from "./components/Search";
 
 function App() {
   const { isDarkMode, toggleTheme } = useContext(themeContext);
@@ -35,12 +36,14 @@ function App() {
     fetchNotes();
 
   }, []);
-
+  
+  const [searchText, setSearchText] = useState('');
 
   return (
     <div className={`main-div ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+      <Search notes={notes} searchText={searchText} setSearchText={setSearchText}/>
       <Input notes={notes} setNotes={setNotes} />
-      <RenderNotes notes={notes} setNotes={setNotes} isDarkMode={isDarkMode}/>
+      <RenderNotes notes={notes} setNotes={setNotes} searchText={searchText} isDarkMode={isDarkMode}/>
       <button className="theme-button" onClick={toggleTheme}>
         {isDarkMode ? '⚪️' : '⚫️'}
       </button>
