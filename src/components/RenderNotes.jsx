@@ -93,7 +93,7 @@ export function RenderNotes({ notes, setNotes, searchText, isDarkMode }) {
     }
   }
 
-  const filteredNotes = notes.filter(note => (note.note.includes(searchText) || note.title.includes(searchText)));
+  const filteredNotes = notes.filter(note => ((note.note).toLowerCase().includes(searchText) || (note.title).toLowerCase().includes(searchText)));
 
   let notesToPrint = [];
   if(searchText === '') {

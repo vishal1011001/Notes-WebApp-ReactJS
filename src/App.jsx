@@ -21,7 +21,7 @@ function App() {
         });
         console.log('Response status:', response.status);
 
-        if(response.ok) {
+        if (response.ok) {
           const data = await response.json();
           console.log('Fetched data:', data);
           setNotes(data);
@@ -36,18 +36,22 @@ function App() {
     fetchNotes();
 
   }, []);
-  
+
   const [searchText, setSearchText] = useState('');
 
   return (
-    <div className={`main-div ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-      <Search notes={notes} searchText={searchText} setSearchText={setSearchText}/>
-      <Input notes={notes} setNotes={setNotes} />
-      <RenderNotes notes={notes} setNotes={setNotes} searchText={searchText} isDarkMode={isDarkMode}/>
-      <button className="theme-button" onClick={toggleTheme}>
-        {isDarkMode ? '⚪️' : '⚫️'}
-      </button>
-    </div>
+    <>
+      <div className="header-div">
+        <Search notes={notes} searchText={searchText} setSearchText={setSearchText} />
+        <button className="theme-button" onClick={toggleTheme}>
+          {isDarkMode ? '⚪️' : '⚫️'}
+        </button>
+      </div>
+      <div className={`main-div ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+        <Input notes={notes} setNotes={setNotes} />
+        <RenderNotes notes={notes} setNotes={setNotes} searchText={searchText} isDarkMode={isDarkMode} />
+      </div>
+    </>
   );
 }
 
