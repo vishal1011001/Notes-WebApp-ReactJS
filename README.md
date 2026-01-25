@@ -5,12 +5,13 @@ Backend in NodeJS/ExpressJS
 Users can take notes, Edit an existing note, Delete notes and toggle between Dark and light mode as per preference.
 
 ## Upcoming Functionalities: 
--User can search among notes with keywords (soon).
 -User Authentication (soon).
+-Database integration (soon).
 
 ## Features:
 - Add new notes
 - Edit notes
+- Search among notes
 - Delete notes
 - Responsive design
 - Built with modern react practices
