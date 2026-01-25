@@ -1,8 +1,12 @@
-import { useState } from "react";
+import "./Search.css";
 
 export function Search({ notes, searchText, setSearchText }) {
   const changeSearchText = (event) => {
     setSearchText((event.target.value).toLowerCase());
+  }
+
+  const clearSearch = () => {
+    setSearchText("");
   }
 
   return (
@@ -15,6 +19,9 @@ export function Search({ notes, searchText, setSearchText }) {
         onChange={changeSearchText}
         value={searchText}
       />
+      <button className="clear-search-button" 
+        onClick={clearSearch}
+      >ⓧ</button>
     </div>
   );
 }

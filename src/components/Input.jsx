@@ -86,7 +86,7 @@ export function Input({ notes, setNotes }) {
           onChange={saveTitleInput}
           onKeyDown={handleKeyDown}
         />
-        <input
+        <textarea
           className="note-input-box"
           placeholder="Enter your memo..."
           value={noteInput}

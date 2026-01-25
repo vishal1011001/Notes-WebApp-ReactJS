@@ -93,7 +93,7 @@ export function RenderNotes({ notes, setNotes, searchText, isDarkMode }) {
     }
   }
 
-  const filteredNotes = notes.filter(note => ((note.note).toLowerCase().includes(searchText) || (note.title).toLowerCase().includes(searchText)));
+  const filteredNotes = notes.filter(note => ((note.note).toLowerCase().trim().includes(searchText) || (note.title).toLowerCase().trim().includes(searchText)));
 
   let notesToPrint = [];
   if(searchText === '') {
@@ -114,7 +114,8 @@ export function RenderNotes({ notes, setNotes, searchText, isDarkMode }) {
                   value={editTitle}
                   className="edit-title-bar"
                 />
-                <input type="text" placeholder="edit note"
+                <textarea
+                  type="text" placeholder="edit note"
                   onChange={changeEditText}
                   value={editText}
                   className='edit-note-bar'

@@ -22,38 +22,7 @@ html, body, #root {
   margin-bottom: 10px;
 }
 
-.search-bar-div {
-  background-color: rgb(235, 198, 255);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  width: 490px;
 
-  box-shadow: 0px 0px 2px gray;
-  outline: none;
-
-  display: flex;
-  align-items: center;
-}
-
-.search-icon {
-  margin-left: 10px;
-}
-
-.search-bar::placeholder {
-  color: rgb(3, 0, 5);
-  opacity: 1;
-}
-
-.search-bar {
-  background-color: rgb(235, 198, 255);
-  color: black;
-  border: none;
-  padding: 10px;
-
-  margin-left: 5px;
-  outline: none;
-}
 
 .main-div {
   display: flex;
@@ -63,7 +32,7 @@ html, body, #root {
   
   /* prob */
   min-height: 100vh;
-  padding-top: 80px;
+  padding-top: 85px;
   padding-bottom: 20px;
   width: 100%;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -75,7 +44,7 @@ html, body, #root {
 }
 
 .main-div.dark-mode{
-  background-color: black;
+  background-color: rgb(23, 24, 25);
   color: white;
 }
 
