@@ -46,13 +46,7 @@ function App() {
   const [displayID, setDisplayID] = useState('');
 
   const noteToDisplay = notes.find(note => note.id === displayID);
-  // const noteToDisplay = {
-  //   id: 'lmao-001',
-  //   title: "hello",
-  //   note: "why am i doing this?"
-  // };
 
-  // changeDisplayID();
 
   return (
     <>
@@ -69,8 +63,8 @@ function App() {
             <RenderNotes notes={notes} setNotes={setNotes} searchText={searchText} isDarkMode={isDarkMode} setDisplayID={setDisplayID} setIsOpen={setIsOpen} isOpen={isOpen} />
           </div>
           {isOpen && (
-            <div className="overlay-div">
-              <NoteOpen noteToDisplay={noteToDisplay} setIsOpen={setIsOpen}/>
+            <div className={`overlay-div ${isDarkMode ? 'dark-mode': 'light-mode'}`}>
+              <NoteOpen noteToDisplay={noteToDisplay} setIsOpen={setIsOpen} isDarkMode={isDarkMode} />
             </div>
           )}
         </div>
