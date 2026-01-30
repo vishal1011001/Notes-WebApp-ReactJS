@@ -4,6 +4,7 @@ import { RenderNotes } from "./components/RenderNotes";
 import './App.css';
 import themeContext from "./components/Theme";
 import { Search } from "./components/Search";
+import { NoteOpen } from "./components/NoteOpen";
 
 function App() {
   const { isDarkMode, toggleTheme } = useContext(themeContext);
@@ -39,6 +40,20 @@ function App() {
 
   const [searchText, setSearchText] = useState('');
 
+  //Single note opened
+  const [isOpen, setIsOpen] = useState(false);
+  //pass by ID of the note
+  const [displayID, setDisplayID] = useState('');
+
+  const noteToDisplay = notes.find(note => note.id === displayID);
+  // const noteToDisplay = {
+  //   id: 'lmao-001',
+  //   title: "hello",
+  //   note: "why am i doing this?"
+  // };
+
+  // changeDisplayID();
+
   return (
     <>
       <div className="header-div">
@@ -49,7 +64,16 @@ function App() {
       </div>
       <div className={`main-div ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
         <Input notes={notes} setNotes={setNotes} />
-        <RenderNotes notes={notes} setNotes={setNotes} searchText={searchText} isDarkMode={isDarkMode} />
+        <div className="container">
+          <div className="base-div">
+            <RenderNotes notes={notes} setNotes={setNotes} searchText={searchText} isDarkMode={isDarkMode} setDisplayID={setDisplayID} setIsOpen={setIsOpen} isOpen={isOpen} />
+          </div>
+          {isOpen && (
+            <div className="overlay-div">
+              <NoteOpen noteToDisplay={noteToDisplay} setIsOpen={setIsOpen}/>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

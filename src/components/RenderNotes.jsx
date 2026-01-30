@@ -1,7 +1,7 @@
 import './RenderNotes.css';
 import { useState } from 'react';
 
-export function RenderNotes({ notes, setNotes, searchText, isDarkMode }) {
+export function RenderNotes({ notes, setNotes, searchText, isDarkMode, setDisplayID, setIsOpen, isOpen}) {
   //delete Note
   const deleteNote = async (id) => {
     try {
@@ -102,8 +102,15 @@ export function RenderNotes({ notes, setNotes, searchText, isDarkMode }) {
     notesToPrint = filteredNotes;
   }
 
+
+  const noteOpened = (event) => {
+    setIsOpen(true)
+    setDisplayID(event.currentTarget.id);
+    console.log(id);
+  }
+
   return (
-    <>
+    <div>
       <div className="all-notes-div">
         {notesToPrint.map((note) => (
           <div key={note.id} className={`note-div ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
@@ -127,10 +134,13 @@ export function RenderNotes({ notes, setNotes, searchText, isDarkMode }) {
               </div>
             )}
             {(!isEditing || note.id !== editID) && (
-              <>
+              <div
+                id={note.id}
+                onClick={noteOpened}
+              >
                 <h3 className="note-title">{note.title}</h3>
                 <p>{note.note}</p>
-              </>
+              </div>
             )}
 
             <button className="delete-button"
@@ -143,6 +153,6 @@ export function RenderNotes({ notes, setNotes, searchText, isDarkMode }) {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

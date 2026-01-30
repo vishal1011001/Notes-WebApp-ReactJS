@@ -23,12 +23,11 @@ html, body, #root {
 }
 
 
-
 .main-div {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
   
   /* prob */
   min-height: 100vh;
@@ -46,6 +45,44 @@ html, body, #root {
 .main-div.dark-mode{
   background-color: rgb(23, 24, 25);
   color: white;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.base-div, .overlay-div {
+  position: absolute;
+}
+
+.base-div {
+  z-index: 1;
+}
+
+.overlay-div {
+  /* positioning in the centre of the screen */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* rest of the styling */
+  padding: 10px;
+  margin-top: 40px;
+  height: 200px;
+  width: 500px;
+  background-color: rgb(255, 255, 255);
+  border: solid;
+  border-color: darkviolet;
+  border-width: 1px;
+  /* box-shadow: -1px 1px 2px purple; */
+  z-index: 2;
+
+  border-radius: 20px;
 }
 
 
