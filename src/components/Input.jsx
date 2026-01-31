@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './Input.css';
 
-export function Input({ notes, setNotes }) {
+export function Input({ isDarkMode, setNotes }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [titleInput, setTitleInput] = useState('');
   const [noteInput, setNoteInput] = useState('');
@@ -17,7 +17,7 @@ export function Input({ notes, setNotes }) {
   const createNote = async () => {
     try {
       const newNote = {
-        id: notes.length + 1,
+        id: crypto.randomUUID(),
         title: titleInput,
         note: noteInput
       };
@@ -59,7 +59,10 @@ export function Input({ notes, setNotes }) {
   }
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && event.shiftKey) {
+      console.log("new line added");
+    } else if (event.key === 'Enter') {
+      event.preventDefault();
       addNote();
     }
   }
@@ -80,15 +83,17 @@ export function Input({ notes, setNotes }) {
     <div className="main-inp-div">
       <div className="input-div">
         <input
-          className="title-input-bar"
+          className={`title-input-bar ${isDarkMode ? 'dark-mode': 'light-mode'}`}
           placeholder="Enter title"
           value={titleInput}
           onChange={saveTitleInput}
           onKeyDown={handleKeyDown}
         />
         <textarea
-          className="note-input-box"
+          className={`note-input-box ${isDarkMode ? 'dark-mode': 'light-mode'}`}
           placeholder="Enter your memo..."
+          rows={4}
+          columns={40}
           value={noteInput}
           onChange={saveNoteInput}
           onKeyDown={handleKeyDown}

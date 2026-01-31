@@ -140,7 +140,7 @@ router.put('/notes/:id', (req, res, next) => {
 
 router.delete('/notes/:id', (req, res, next) => {
   const id = (req.params.id);
-  console.log(id);
+  console.log("item deleted:", id);
   
   notes = notes.filter(note => note.id !== id);
 

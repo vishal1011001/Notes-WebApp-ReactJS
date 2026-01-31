@@ -57,12 +57,18 @@
 }
 
 .title-input-bar {
+  font-size: 20px;
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 2px;
   border: none;
   outline: none;
   transition: box-shadow 0.15s ease;
+}
+
+.title-input-bar.dark-mode {
+  background-color: rgb(23, 24, 25);
+  color: white;
 }
 
 .title-input-bar:hover {
@@ -74,10 +80,18 @@
 }
 
 .note-input-box {
+  font-size: 16px;
+
   border: none;
   border-radius: 10px;
   padding: 10px;
   outline: none;
+  resize: none;
+}
+
+.note-input-box.dark-mode {
+  background-color: rgb(23, 24, 25);
+  color: white;
 }
 
 .add-button {

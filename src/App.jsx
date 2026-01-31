@@ -57,14 +57,14 @@ function App() {
         </button>
       </div>
       <div className={`main-div ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-        <Input notes={notes} setNotes={setNotes} />
+        <Input isDarkMode={isDarkMode} setNotes={setNotes} />
         <div className="container">
           <div className="base-div">
             <RenderNotes notes={notes} setNotes={setNotes} searchText={searchText} isDarkMode={isDarkMode} setDisplayID={setDisplayID} setIsOpen={setIsOpen} isOpen={isOpen} />
           </div>
           {isOpen && (
             <div className={`overlay-div ${isDarkMode ? 'dark-mode': 'light-mode'}`}>
-              <NoteOpen noteToDisplay={noteToDisplay} setIsOpen={setIsOpen} isDarkMode={isDarkMode} />
+              <NoteOpen noteToDisplay={noteToDisplay} isOpen={isOpen} setIsOpen={setIsOpen} setNotes={setNotes} displayID={displayID} isDarkMode={isDarkMode} />
             </div>
           )}
         </div>

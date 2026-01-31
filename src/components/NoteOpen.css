@@ -1,6 +1,6 @@
 .open-main-div {
-  height: 100%;
-  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -10,10 +10,22 @@
 
 .open-note-title {
   margin: 0;
+  font-size: 20px;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  
+  max-width: 100%;
 }
 
 .open-note-text {
   margin: 0;
+  margin-bottom: 15px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  font-size: 18px;
+
+  max-width: 100%;
 }
 
 .exit-button {
@@ -21,12 +33,12 @@
   background-color: purple;
   border: none;
   border-radius: 5px;
-  padding: 10px 15px;
+  padding: 8px 10px;
   color: white;
 
   position: absolute;
-  bottom: 10px;
-  align-self: center;
+  bottom: 14px;
+  left: 46.5%;
 
   transition: background-color 0.15s, color 0.15s, box-shadow 0.15s;
 }
@@ -35,4 +47,72 @@
   background-color: white;
   color: purple;
   box-shadow: 0px 0px 2px purple;
+}
+
+/* Edit functionality */
+.edit-button,
+.cancel-button {
+  left: 14px;
+  bottom: 14px;
+  width: 4%;
+  padding: 5px 5px;
+  padding-bottom: 2px;
+}
+
+.cancel-button {
+  width: 10%;
+  padding-bottom: 5px;
+}
+
+.edit-title-bar, 
+.edit-note-box {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  width: 90%;
+  font-size: 20px;
+
+  transition: background-color 0.3s ease, 
+    color 0.3s ease;
+}
+
+.edit-note-box {
+  min-width: 25vw;
+  font-family: Arial;
+  scrollbar-width: none;
+  height: 80%;
+  margin-top: 3px;
+  resize: none;
+
+  margin-bottom: 15px;
+}
+
+.edit-note-box.dark-mode,
+.edit-title-bar.dark-mode {
+  background-color: rgb(32,33,36);
+  color: white;
+  outline: none;
+}
+
+.edit-save-button {
+  background-color: white;
+  color: purple;
+  border: none;
+  box-shadow: 0px 0px 1px rgb(93, 13, 168);
+  border-radius: 5px;
+  padding: 4px 8px;
+  font-size: 15px;
+  margin-top: 5px;
+
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 8px;
+
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.edit-save-button:hover {
+  background-color: purple;
+  color: white;
 }
