@@ -106,13 +106,13 @@ export function NoteOpen({ noteToDisplay, isOpen, setIsOpen, setNotes, displayID
   }, [isOpen, setIsOpen]);
 
   return (
-    <div className={`open-main-div ${isDarkMode ? "dark" : "light"}`}>
+    <div className={`open-main-div`}>
       {(isEditing) && (
-        <div onKeyDown={handleKeyDown}>
+        <div onKeyDown={handleKeyDown} className='edit-div'>
           <input type="text" placeholder="edit note title"
             onChange={changeEditTitle}
             value={editTitle}
-            className={`edit-title-bar ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
+            className={`edit-title-bar ${isDarkMode ? 'dark' : 'light'}`}
           />
           <textarea
             type="text" placeholder="edit note"
@@ -120,38 +120,38 @@ export function NoteOpen({ noteToDisplay, isOpen, setIsOpen, setNotes, displayID
             columns={230}
             onChange={changeEditText}
             value={editText}
-            className={`edit-note-box ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
+            className={`edit-note-area ${isDarkMode ? 'dark' : 'light'}`}
           />
-          <button
-            className="edit-save-button"
-            onClick={saveEdit}
-          >Save</button>
         </div>
       )}
       {(!isEditing) && (
-        <>
-          <div className="open-note-title" >
-            <h2 style={{ margin: 0 }}>{title}</h2>
-          </div>
-          <div className="open-note-text" >
-            <p>{note}</p>
-          </div>
-
-          <button className="exit-button"
-            onClick={() => (setIsOpen(false))}
-          >Exit</button>
-        </>
+        <div className="open-note-content-div">
+          <h2 className="open-note-title">{title}</h2>
+          <p className="open-note-text">{note}</p>
+        </div>
       )}
 
-      <button
-        onClick={changeIsEditing}
-        className={(isEditing) ? 'cancel-button' : 'edit-button'}
-      >{(isEditing) ? 'Cancel' : <img src='public/edit-icon.png' height={15} />}</button>
+      <div className={`open-buttons-div`} >
 
+        <button className="delete-button"
+          onClick={() => deleteNote(displayID)}
+        ><img src='public/delete.png' height={30} /></button>
+        <button
+          onClick={changeIsEditing}
+          className={`${(isEditing) ? 'cancel-button' : 'edit-button'} ${isDarkMode ? 'dark' : 'light'}`}
+        >{(isEditing) ? 'Cancel' : <img src='public/edit-icon.png' height={25} />}</button>
 
-      <button className="delete-button"
-        onClick={() => deleteNote(displayID)}
-      >Delete</button>
+        {isEditing && (
+          <button
+            className={`edit-save-button ${isDarkMode ? 'dark' : 'light'}`}
+            onClick={saveEdit}
+          >Save</button>
+        )}
+
+        <button className={`close-button ${isDarkMode ? 'dark' : 'light'}`}
+          onClick={() => (setIsOpen(false))}
+        >Close</button>
+      </div>
     </div>
   );
 };

@@ -12,7 +12,7 @@ export function RenderNotes({ notes, setNotes, searchText, isDarkMode, setDispla
   }
 
 
-  const filteredNotes = notes.filter(note => ((note.note).toLowerCase().trim().includes(searchText) || (note.title).toLowerCase().trim().includes(searchText)));
+  const filteredNotes = notes.filter(note => ((note.note).toLowerCase().trim().includes(searchText.toLowerCase().trim()) || (note.title).toLowerCase().trim().includes(searchText.toLowerCase().trim())));
 
   let notesToPrint = [];
   if (searchText === '') {

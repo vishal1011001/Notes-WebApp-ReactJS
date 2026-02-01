@@ -113,8 +113,8 @@ router.post('/notes', (req, res, next) => {
   console.log(req.body);
   const newNote = {
     id: crypto.randomUUID(),
-    title: req.body.title,
-    note: req.body.note
+    title: req.body.title.trim(),
+    note: req.body.note.trim()
   };
 
   if (!newNote.title || !newNote.note) {
@@ -132,8 +132,8 @@ router.put('/notes/:id', (req, res, next) => {
   console.log(req.body);
 
   const noteToEdit = notes.find((note) => note.id === id);
-  noteToEdit.title = req.body.title;
-  noteToEdit.note = req.body.note;
+  noteToEdit.title = req.body.title.trim();
+  noteToEdit.note = req.body.note.trim();
 
   res.status(200).json(notes);
 });

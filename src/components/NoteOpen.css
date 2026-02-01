@@ -1,118 +1,149 @@
 .open-main-div {
-  min-height: 100%;
-  min-width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 10px;
 }
+
 
 .open-note-title {
   margin: 0;
-  font-size: 20px;
-
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  
-  max-width: 100%;
 }
 
 .open-note-text {
-  margin: 0;
-  margin-bottom: 15px;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  font-size: 18px;
-
-  max-width: 100%;
+  min-height: 110px;
 }
 
-.exit-button {
-  font-size: 15px;
-  background-color: purple;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 10px;
-  color: white;
 
-  position: absolute;
-  bottom: 14px;
-  left: 46.5%;
-
-  transition: background-color 0.15s, color 0.15s, box-shadow 0.15s;
+/* BUTTONS */
+button {
+  cursor: pointer;
 }
 
-.exit-button:hover {
-  background-color: white;
-  color: purple;
-  box-shadow: 0px 0px 2px purple;
-}
-
-/* Edit functionality */
-.edit-button,
-.cancel-button {
-  left: 14px;
-  bottom: 14px;
-  width: 4%;
-  padding: 5px 5px;
-  padding-bottom: 2px;
-}
-
-.cancel-button {
-  width: 10%;
+.open-buttons-div {
+  border-top: solid;
+  border-width: 1px;
+  padding-top: 10px;
   padding-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.edit-title-bar, 
-.edit-note-box {
+.edit-button,
+.delete-button,
+.close-button {
+  padding: 0;
+  margin: 0;
+}
+
+.edit-button,
+.delete-button {
+  background-color: transparent;
   border: none;
-  border-radius: 5px;
-  padding: 5px;
-  width: 90%;
+}
+
+.delete-button {
+  padding: 0;
+  margin-left: 6px;
+  border-radius: 50%;
+  width: 35px;
+}
+
+.delete-button:hover {
+  filter: invert(10%);
+}
+
+
+.edit-button.dark {
+  filter: invert(100%);
+}
+
+.edit-button.light:hover {
+  filter: invert(40%);
+}
+
+.edit-button.dark:hover {
+  filter: invert(80%);
+}
+
+.close-button {
+  padding: 10px 12px;
+  background-color: transparent;
+  color: black;
+  font-size: 17px;
+
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.close-button.dark {
+  color: white;
+}
+
+.close-button:hover {
+  background-color: rgb(247, 247, 247);
+}
+
+.close-button.dark:hover {
+  background-color: rgb(46, 46, 46);
+  color: white;
+}
+
+
+
+
+/* EDIT FUNCTIONALITY */
+.edit-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-title-bar {
+  padding: 4px;
   font-size: 20px;
-
-  transition: background-color 0.3s ease, 
-    color 0.3s ease;
-}
-
-.edit-note-box {
-  min-width: 25vw;
-  font-family: Arial;
-  scrollbar-width: none;
-  height: 80%;
-  margin-top: 3px;
-  resize: none;
-
-  margin-bottom: 15px;
-}
-
-.edit-note-box.dark-mode,
-.edit-title-bar.dark-mode {
-  background-color: rgb(32,33,36);
-  color: white;
   outline: none;
-}
-
-.edit-save-button {
-  background-color: white;
-  color: purple;
   border: none;
-  box-shadow: 0px 0px 1px rgb(93, 13, 168);
-  border-radius: 5px;
-  padding: 4px 8px;
-  font-size: 15px;
-  margin-top: 5px;
+  margin-bottom: 4px;
 
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-  bottom: 8px;
-
-  transition: background-color 0.15s, color 0.15s;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.edit-save-button:hover {
-  background-color: purple;
+.edit-title-bar.dark,
+.edit-note-area.dark {
+  background-color: rgb(32, 33, 36);
   color: white;
+}
+
+.edit-note-area {
+  resize: none;
+  scrollbar-width: none;
+  font-family: Arial;
+  font-size: 16px;
+  outline: none;
+  border: none;
+
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cancel-button,
+.edit-save-button {
+  --c1: #984bf5;
+  --c2: #611adc;
+
+  padding: 0;
+  min-height: none;
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 0px 12px;
+  background-color: transparent;
+  background: linear-gradient(60deg, var(--c1), var(--c2) 51%, var(--c1)) var(--x, 0)/ 200%;
+  transition: background-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.cancel-button:hover,
+.edit-save-button:hover {
+  /* background-image: linear-gradient(rgb(135, 17, 135), rgb(107, 0, 107), rgb(114, 1, 163)); */
+  --x: 100%;
 }

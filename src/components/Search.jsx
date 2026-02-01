@@ -2,7 +2,7 @@ import "./Search.css";
 
 export function Search({ notes, searchText, setSearchText }) {
   const changeSearchText = (event) => {
-    setSearchText((event.target.value).toLowerCase());
+    setSearchText((event.target.value));
   }
 
   const clearSearch = () => {
