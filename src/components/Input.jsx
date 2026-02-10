@@ -71,7 +71,7 @@ export function Input({ isDarkMode, setNotes }) {
     return (
       <div>
         <input
-          className="input-bar"
+          className={`input-bar ${isDarkMode ? 'dark' : 'light'}`}
           placeholder="Take a memo"
           onFocus={() => setIsExpanded(true)}
         />
@@ -83,14 +83,14 @@ export function Input({ isDarkMode, setNotes }) {
     <div className="main-inp-div">
       <div className="input-div">
         <input
-          className={`title-input-bar ${isDarkMode ? 'dark-mode': 'light-mode'}`}
+          className={`title-input-bar ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
           placeholder="Enter title"
           value={titleInput}
           onChange={saveTitleInput}
           onKeyDown={handleKeyDown}
         />
         <textarea
-          className={`note-input-box ${isDarkMode ? 'dark-mode': 'light-mode'}`}
+          className={`note-input-box ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
           placeholder="Enter your memo..."
           rows={4}
           columns={40}
@@ -104,7 +104,7 @@ export function Input({ isDarkMode, setNotes }) {
           className="add-button"
           onClick={addNote}
         >Add</button>
-        <button className="close-button" onClick={closeEditor}>X</button>
+        <button className={`close-button ${isDarkMode ? 'dark' : 'light'}`} onClick={closeEditor}>Close</button>
       </div>
     </div>
   );

@@ -8,6 +8,10 @@
   box-shadow: 0px 0px 2px rgb(112, 0, 112);
   transition: box-shadow 0.2s ease;
 }
+.input-bar.dark {
+  background-color: rgb(43, 47, 48);
+  color: white;
+}
 
 .input-bar:hover {
   box-shadow: 0px 0px 4px rgb(145, 5, 145);
@@ -63,7 +67,7 @@
   margin-bottom: 2px;
   border: none;
   outline: none;
-  transition: box-shadow 0.15s ease;
+  transition: box-shadow 0.3s ease;
 }
 
 .title-input-bar.dark-mode {
@@ -119,12 +123,15 @@
   border: none;
   border-radius: 5px;
   padding: 5px;
-}
 
+  transition: 0.15s ease;
+}
+.close-button.dark {
+  color: white;
+}
 .close-button:hover {
   opacity: 0.7;
 }
-
 .close-button:active {
   opacity: 0.5;
 }

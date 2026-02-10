@@ -17,7 +17,6 @@
   border-style: solid;
   border-radius: 10px;
   padding: 10px;
-  padding-bottom: 25px;
   
   position: relative;
   
@@ -55,11 +54,10 @@
 .note-text {
   overflow-wrap: break-word;
   word-wrap: break-word;
+  white-space: pre-wrap;  
 
   max-width: 100%;
 }
-
-
 
 
 @keyframes noteRenderAnimation {

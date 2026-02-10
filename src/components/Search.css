@@ -15,7 +15,6 @@
 .search-icon {
   margin-left: 10px;
   filter: brightness(10%);
-  /* filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.5)); */
 }
 
 .search-bar::placeholder {

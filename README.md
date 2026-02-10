@@ -1,12 +1,12 @@
 Note Taking WebApp.
 Frontend Made in React.js (HTML, CSS, JS)
 Backend in NodeJS/ExpressJS
+Database used is MongoDB via Mongoose
 
 Users can take notes, Edit an existing note, Delete notes and toggle between Dark and light mode as per preference.
 
 ## Upcoming Functionalities: 
 -User Authentication (soon).
--Database integration (soon).
 
 ## Features:
 - Add new notes
@@ -21,6 +21,7 @@ Users can take notes, Edit an existing note, Delete notes and toggle between Dar
 - Vite
 - NodeJS
 - ExpressJS
+- MongoDB
 - JavaScript (ES6+)
 - HTML5
 - CSS3
@@ -28,8 +29,10 @@ Users can take notes, Edit an existing note, Delete notes and toggle between Dar
 ## Getting Started
 
 ### Prerequisites
-- Node.js
 - npm
+- Node.js
+- express.js
+- mongoDB & mongoose
 
 ### Installation
 ```bash

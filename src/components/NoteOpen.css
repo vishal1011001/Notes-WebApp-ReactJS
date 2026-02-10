@@ -1,6 +1,11 @@
 .open-main-div {
   display: flex;
   flex-direction: column;
+
+  animation: noteOpenAnimation;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 
 
@@ -10,6 +15,9 @@
 
 .open-note-text {
   min-height: 110px;
+
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 
@@ -144,6 +152,16 @@ button {
 
 .cancel-button:hover,
 .edit-save-button:hover {
-  /* background-image: linear-gradient(rgb(135, 17, 135), rgb(107, 0, 107), rgb(114, 1, 163)); */
   --x: 100%;
+}
+
+
+
+@keyframes noteOpenAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

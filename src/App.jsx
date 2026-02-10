@@ -59,7 +59,7 @@ function App() {
       <div className={`main-div ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
         <Input isDarkMode={isDarkMode} setNotes={setNotes} />
         <div className="container">
-          <div className="base-div">
+          <div className={`base-div ${isOpen ? 'blur': 'clean'}`}>
             <RenderNotes notes={notes} setNotes={setNotes} searchText={searchText} isDarkMode={isDarkMode} setDisplayID={setDisplayID} setIsOpen={setIsOpen} isOpen={isOpen} />
           </div>
           {isOpen && (
