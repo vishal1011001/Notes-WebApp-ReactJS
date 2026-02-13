@@ -8,10 +8,15 @@ export function NoteOpen({ noteToDisplay, isOpen, setIsOpen, setNotes, displayID
   //delete Note
   const deleteNote = async (id) => {
     try {
+      const token = localStorage.getItem('token');
+
       setIsOpen(false);
 
       const response = await fetch(`http://localhost:5000/notes/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
 
       if (response.ok) {
@@ -29,6 +34,8 @@ export function NoteOpen({ noteToDisplay, isOpen, setIsOpen, setNotes, displayID
   //update an existing note (PUT)
   const editReqSend = async () => {
     try {
+      const token = localStorage.getItem('token');
+
       const editedNote = {
         id: displayID,
         title: editTitle,
@@ -38,7 +45,8 @@ export function NoteOpen({ noteToDisplay, isOpen, setIsOpen, setNotes, displayID
       const response = await fetch(`http://localhost:5000/notes/${displayID}`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(editedNote)
       });

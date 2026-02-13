@@ -16,6 +16,7 @@ export function Input({ isDarkMode, setNotes }) {
 
   const createNote = async () => {
     try {
+      const token = localStorage.getItem('token');
       const newNote = {
         id: crypto.randomUUID(),
         title: titleInput,
@@ -25,7 +26,8 @@ export function Input({ isDarkMode, setNotes }) {
       const response = await fetch('http://localhost:5000/notes', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(newNote)
       })

@@ -1,0 +1,83 @@
+.login-page-main {
+  background-image: url('../../public/bg-4.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.login-div {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  width: 25vw;
+  min-height: 40vh;
+  max-height: 60vh;
+
+  background-color: rgba(255, 255, 255, 0.505);
+
+  padding: 20px;
+  box-shadow: 0px 0px 1px purple;
+  border-radius: 10px;
+}
+
+.login-form {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.username-bar,
+.email-bar,
+.password-bar {
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 3px rgb(181, 119, 222);
+
+}
+
+
+.login-button {
+  padding: 10px;
+  margin-top: 10px;
+  width: 80px;
+  border: none;
+  border-radius: 5px;
+  background-color: blueviolet;
+  color: white;
+  font-size: 15px;
+  align-self: center;
+
+  transition: 0.15s ease;
+}
+.login-button:hover {
+  background-color: white;
+  color: blueviolet;
+  box-shadow: 0px 0px 2px blueviolet;
+}
+
+.other-buttons-div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.want-toggle-button {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  color: rgb(121, 0, 121);
+}
+.want-toggle-button:hover {
+  color: rgb(0, 0, 155);
+}

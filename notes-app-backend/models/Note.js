@@ -1,10 +1,17 @@
 import mongoose from 'mongoose';
 
 const noteSchema = mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User'
+  },
   title: {type: String, required: true},
   note: {type: String, required: true},
 });
 
+
+// _id to id (for frontend)
 noteSchema.set('toJSON', {
   virtuals: true,
   versionKey: false,
@@ -15,9 +22,21 @@ noteSchema.set('toJSON', {
 
 const noteModel = mongoose.model('Note', noteSchema);
 
+//retrieve all notes
+const getAllNotes = async (userId) => {
+  try {
+    const result = await noteModel.find({user: userId});
+    return result;
+  } catch (error) {
+    console.error('error fetching notes from the database: ', error);
+  }
+}
+
+//create a note
 const createNote = async (noteObj) => {
   try {
     const n1 = new noteModel({
+      user: noteObj.user,
       title: noteObj.title,
       note: noteObj.note
     });
@@ -28,16 +47,9 @@ const createNote = async (noteObj) => {
   }
 }
 
-const getAllNotes = async () => {
-  try {
-    const result = await noteModel.find();
-    return result;
-  } catch (error) {
-    console.error('error fetching notes from the database: ', error);
-  }
-}
 
-const updateNote = async (id, updateObj) => {
+//update a note
+const updateNote = async (id, updateObj, userId) => {
   try {
     const result = await noteModel.updateOne({_id: id}, {
       title: updateObj.title,
@@ -48,6 +60,7 @@ const updateNote = async (id, updateObj) => {
   }
 }
 
+//delete a note
 const deleteNote = async (id) => {
   try {
     const result = await noteModel.findByIdAndDelete(id);
