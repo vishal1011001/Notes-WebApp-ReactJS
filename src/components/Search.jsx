@@ -1,6 +1,6 @@
 import "./Search.css";
 
-export function Search({ notes, searchText, setSearchText }) {
+export function Search({ notes, searchText, setSearchText, isDarkMode }) {
   const changeSearchText = (event) => {
     setSearchText((event.target.value));
   }
@@ -10,8 +10,8 @@ export function Search({ notes, searchText, setSearchText }) {
   }
 
   return (
-    <div className="search-bar-div">
-      <img className="search-icon" src="../../public/search-icon.png" width={30}/>
+    <div className={`search-bar-div ${isDarkMode? 'dark' : 'light'}`}>
+      <img className="search-icon" src="/search-icon.png" width={30}/>
       <input
         className="search-bar"
         placeholder="Search notes"

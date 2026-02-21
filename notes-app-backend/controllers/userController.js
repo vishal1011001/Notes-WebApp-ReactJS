@@ -56,7 +56,7 @@ const loginUser = asyncHandler(async (req, res) => {
   
   const user = await userModel.findOne({email});
   
-  if(user && bcrypt.compare(password, user.password)) {
+  if(user && await bcrypt.compare(password, user.password)) {
     res.status(200).json({
       _id: user.id,
       userName: user.userName,

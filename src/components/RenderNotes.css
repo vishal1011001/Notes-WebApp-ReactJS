@@ -1,4 +1,5 @@
-.all-notes-div {
+.not-pinned-notes-div,
+.pinned-notes-div {
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -7,7 +8,13 @@
   margin-top: 25px;
 }
 
+.not-pinned-notes-div.noPin {
+  margin-top: 0;
+}
 
+.not-pinned-notes-div.yesPin {
+  margin-top: 3vh;
+}
 
 .note-div {
   flex-basis: calc(100%/4);
@@ -59,6 +66,27 @@
   max-width: 100%;
 }
 
+.pin-button {
+  position: absolute;
+  top: 3px;
+  right: 1px;
+  border: none;
+  background-color: transparent;
+}
+
+.notes-h3-heading {
+  width: 100%;
+  padding-left: 10vw;
+}
+.note-div:hover .pin-img {
+  opacity: 0.6;
+}
+.pin-img {
+  opacity: 0;
+}
+.pin-button:hover .pin-img {
+  opacity: 1;
+}
 
 @keyframes noteRenderAnimation {
   0% {
@@ -68,5 +96,68 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* MOBILE RESPONSIVENESS */
+/* @media (max-width: 1024px) {
+  .note-div {
+    flex-basis: calc(100%/2);
+    min-width: 45vw;
+  }
+} */
+
+/* @media (max-width: 768px) {
+  .not-pinned-notes-div,
+  .pinned-notes-div {
+    gap: 2vw;
+    margin-top: 3vh;
+    padding: 0 2vw;
+  }
+
+  .note-div {
+    flex-basis: 100%;
+    min-width: 35vw;
+    max-width: 35vw;
+    min-height: 10vh;
+    padding: 2vw;
+  }
+
+  .note-title {
+    font-size: 4vw;
+    margin-bottom: 1.5vh;
+  }
+
+  .note-text {
+    font-size: 3.5vw;
+  }
+} */
+
+@media (max-width: 480px) {
+  .not-pinned-notes-div,
+  .pinned-notes-div {
+    gap: 2vw;
+    margin-top: 0;
+    padding: 0 2vw;
+  }
+
+  .note-div {
+    flex-basis: 45%;
+    min-width: 35vw;
+    min-height: 18vh;
+    padding: 1.5vw;
+  }
+
+  .notes-h3-heading {
+    padding-left: 1vw;
+  }
+
+  .note-title {
+    font-size: 3.5vw;
+    margin-bottom: 1vh;
+  }
+
+  .note-text {
+    font-size: 3vw;
   }
 }

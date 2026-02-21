@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import './NoteOpen.css';
 
-export function NoteOpen({ noteToDisplay, isOpen, setIsOpen, setNotes, displayID, isDarkMode }) {
+export function NoteOpen({ noteToDisplay, isOpen, setIsOpen, setNotes, displayID, isDarkMode, API_URL }) {
   const [title, setTitle] = useState(noteToDisplay.title);
   const [note, setNote] = useState(noteToDisplay.note);
 
@@ -12,7 +12,7 @@ export function NoteOpen({ noteToDisplay, isOpen, setIsOpen, setNotes, displayID
 
       setIsOpen(false);
 
-      const response = await fetch(`http://localhost:5000/notes/${id}`, {
+      const response = await fetch(`${API_URL}/notes/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -31,6 +31,7 @@ export function NoteOpen({ noteToDisplay, isOpen, setIsOpen, setNotes, displayID
 
   }
 
+  let pinCondition = noteToDisplay.isPinned;
   //update an existing note (PUT)
   const editReqSend = async () => {
     try {
@@ -39,10 +40,11 @@ export function NoteOpen({ noteToDisplay, isOpen, setIsOpen, setNotes, displayID
       const editedNote = {
         id: displayID,
         title: editTitle,
-        note: editText
+        note: editText,
+        isPinned: pinCondition
       };
 
-      const response = await fetch(`http://localhost:5000/notes/${displayID}`, {
+      const response = await fetch(`${API_URL}/notes/${displayID}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -77,6 +79,11 @@ export function NoteOpen({ noteToDisplay, isOpen, setIsOpen, setNotes, displayID
 
   const changeIsEditing = () => {
     setIsEditing(!isEditing);
+  }
+
+  const pinToggle = async () => {
+    pinCondition = !(noteToDisplay.isPinned);
+    await editReqSend();
   }
 
   const saveEdit = async () => {
@@ -140,20 +147,25 @@ export function NoteOpen({ noteToDisplay, isOpen, setIsOpen, setNotes, displayID
       )}
 
       <div className={`open-buttons-div`} >
-
         <button className="delete-button"
           onClick={() => deleteNote(displayID)}
-        ><img src='public/delete.png' height={30} /></button>
+        ><img src='/delete.png' height={30} /></button>
         <button
           onClick={changeIsEditing}
           className={`${(isEditing) ? 'cancel-button' : 'edit-button'} ${isDarkMode ? 'dark' : 'light'}`}
-        >{(isEditing) ? 'Cancel' : <img src='public/edit-icon.png' height={25} />}</button>
+        >{(isEditing) ? 'Cancel' : <img src='/edit-icon.png' height={25} />}</button>
 
         {isEditing && (
           <button
             className={`edit-save-button ${isDarkMode ? 'dark' : 'light'}`}
             onClick={saveEdit}
           >Save</button>
+        )}
+        {!isEditing && (
+          <button
+            className="open-pin-button"
+            onClick={pinToggle}
+          ><img className='open-pin-img' src='/pin.png' height={25} /></button>
         )}
 
         <button className={`close-button ${isDarkMode ? 'dark' : 'light'}`}

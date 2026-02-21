@@ -1,6 +1,9 @@
 .open-main-div {
   display: flex;
   flex-direction: column;
+  max-width: 100%;
+  overflow-y: auto;
+  max-height: calc(75vh - 40px);
 
   animation: noteOpenAnimation;
   animation-duration: 0.3s;
@@ -38,12 +41,16 @@ button {
 
 .edit-button,
 .delete-button,
+.open-pin-button,
 .close-button {
   padding: 0;
   margin: 0;
+
+  transition: 0.15s ease;
 }
 
 .edit-button,
+.open-pin-button,
 .delete-button {
   background-color: transparent;
   border: none;
@@ -54,10 +61,12 @@ button {
   margin-left: 6px;
   border-radius: 50%;
   width: 35px;
+
+  transition: 0.15s ease;
 }
 
 .delete-button:hover {
-  filter: invert(10%);
+  filter: drop-shadow(0px 0px 2px red) invert(10%);
 }
 
 
@@ -72,6 +81,12 @@ button {
 .edit-button.dark:hover {
   filter: invert(80%);
 }
+
+
+.open-pin-button:hover {
+  filter: drop-shadow(0px 0px 8px red);
+}
+
 
 .close-button {
   padding: 10px 12px;
@@ -163,5 +178,125 @@ button {
   }
   100% {
     opacity: 1;
+  }
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  .open-main-div {
+    max-height: calc(75vh - 30px);
+  }
+
+  .open-note-title {
+    font-size: 18px;
+    margin-bottom: 8px;
+    word-break: break-word;
+  }
+
+  .open-note-text {
+    min-height: 100px;
+    max-height: 40vh;
+    overflow-y: auto;
+    font-size: 14px;
+    word-break: break-word;
+  }
+
+  .open-buttons-div {
+    padding-top: 8px;
+    padding-bottom: 4px;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+
+  .edit-button,
+  .delete-button,
+  .close-button {
+    font-size: 14px;
+  }
+
+  .delete-button {
+    width: 30px;
+  }
+
+  .edit-title-bar {
+    font-size: 16px;
+    padding: 6px;
+    word-break: break-word;
+  }
+
+  .edit-note-area {
+    font-size: 14px;
+    padding: 6px;
+    max-height: 35vh;
+  }
+
+  .cancel-button,
+  .edit-save-button {
+    padding: 0px 10px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .open-main-div {
+    max-height: calc(85vh - 25px);
+  }
+
+  .open-note-title {
+    font-size: 16px;
+    margin-bottom: 6px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .open-note-text {
+    min-height: 80px;
+    max-height: 45vh;
+    font-size: 13px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .open-buttons-div {
+    padding-top: 6px;
+    padding-bottom: 3px;
+    gap: 3px;
+    flex-wrap: wrap;
+  }
+
+  .edit-button,
+  .delete-button,
+  .close-button {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  .delete-button {
+    width: 28px;
+    margin-left: 2px;
+  }
+
+  .close-button {
+    padding: 4px 8px;
+  }
+
+  .edit-title-bar {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 4px;
+    word-break: break-word;
+  }
+
+  .edit-note-area {
+    font-size: 13px;
+    padding: 0px;
+    max-height: 40vh;
+  }
+
+  .cancel-button,
+  .edit-save-button {
+    /* padding: 0px 12px; */
+    width: 14vw;
+    font-size: 11px;
   }
 }

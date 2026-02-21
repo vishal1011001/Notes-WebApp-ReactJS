@@ -1,15 +1,21 @@
 .input-bar {
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px;
   width: 500px;
   font-size: 14px;
+  margin-top: 1vh;
 
   border: none;
   box-shadow: 0px 0px 2px rgb(112, 0, 112);
   transition: box-shadow 0.2s ease;
 }
+
 .input-bar.dark {
-  background-color: rgb(43, 47, 48);
+  background-color: rgb(27, 27, 27);
+  color: white;
+}
+.input-bar.dark::placeholder {
+  opacity: 1;
   color: white;
 }
 
@@ -19,10 +25,12 @@
 
 .main-inp-div {
   display: flex;
+  flex-direction: column;
   width: 500px;
   box-shadow: 0px 0px 2px gray;
   border-radius: 10px;
   margin-bottom: 10px;
+  margin-top: 1vh;
 
   animation: mainInputDivAnimation;
   animation-duration: 1s;
@@ -37,6 +45,7 @@
 
     border: none;
   }
+
   100% {
     width: 500px;
     box-shadow: 0px 0px 2px gray;
@@ -51,14 +60,7 @@
   width: 100%;
 }
 
-.input-buttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: top;
-  width: 85px;
-  padding: 10px;
-  gap: 5px;
-}
+
 
 .title-input-bar {
   font-size: 20px;
@@ -98,8 +100,25 @@
   color: white;
 }
 
+.input-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  justify-self: center;
+  align-self: center;
+  width: 85%;
+  padding: 10px;
+
+  border-top-color: black;
+  border-top-style: solid;
+  border-width: 0.5px;
+}
+
 .add-button {
+  width: 4vw;
   color: white;
+  font-size: 15px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
   background-color: rgb(100, 5, 188);
   border: rgb(151, 53, 243);
@@ -108,13 +127,77 @@
 
   transition: opacity 0.15s;
 }
-
 .add-button:hover {
   opacity: 0.7;
 }
-
 .add-button:active {
   opacity: 0.5;
+}
+
+.input-ai-button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  box-shadow: 0px 0px 1px black;
+  width: 3vw;
+  border-radius: 0.5vw;
+}
+
+.input-pin-button {
+  background-color: transparent;
+  border: none;
+  opacity: 0.7;
+}
+.input-pin-button:hover {
+  opacity: 0.85;
+}
+.input-pin-button.pinned {
+  opacity: 1;
+}
+
+.input-ai-div {
+  padding: 1vw;
+  display: flex;
+  justify-content: space-between;
+
+  animation: aiDivAnim;
+  animation-duration: 0.3s;
+}
+
+@keyframes aiDivAnim {
+  0% {
+    height: 0;
+  } 
+  100% {
+    height: 100%;
+  }
+}
+
+.prompt-bar {
+  padding: 1vw;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  width: 73%;
+  margin-left: 1vw;
+  box-shadow: 0px 0px 3px rgb(21, 0, 255);
+}
+
+.ai-prompt-send-button{
+  width: 3.5vw;
+  font-size: 16px;
+  background-color: transparent;
+  margin-right: 1vw;
+  /* background-image: linear-gradient(80deg, rgb(0, 102, 255), rgb(0, 102, 255), rgb(203, 113, 203)); */
+  color: white;
+  border: none;
+  border-radius: 50px;
+
+  transition: 0.3s ease;
+}
+.ai-prompt-send-button:hover {
+  background-color: aliceblue;
 }
 
 .close-button {
@@ -126,12 +209,112 @@
 
   transition: 0.15s ease;
 }
+
 .close-button.dark {
   color: white;
 }
+
 .close-button:hover {
   opacity: 0.7;
 }
+
 .close-button:active {
   opacity: 0.5;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  @keyframes mainInputDivAnimationMobile {
+    0% {
+      border-radius: 2vw;
+      padding: 2vw;
+      width: 90vw;
+      margin-bottom: 2vw;
+
+      border: none;
+    }
+
+    100% {
+      width: 90vw;
+      box-shadow: 0px 0px 2px gray;
+      border-radius: 2vw;
+      margin-bottom: 2vw;
+    }
+  }
+
+  .input-bar {
+    margin-top: 0;
+    width: 90vw;
+    max-width: 500px;
+    font-size: 3.5vw;
+    padding: 2vw;
+  }
+  
+  .main-inp-div {
+    width: 90vw;
+    max-width: 500px;
+    margin-bottom: 1.5vh;
+    margin-top: 1.5vh;
+
+    animation: mainInputDivAnimationMobile;
+    animation-duration: 1s;
+  }
+
+  .title-input-bar {
+    font-size: 4.5vw;
+    padding: 2vw;
+    margin-bottom: 0.5vh;
+  }
+
+  .note-input-box {
+    font-size: 3.5vw;
+    padding: 2vw;
+  }
+
+  .input-buttons {
+    width: 18vw;
+    padding: 2vw;
+    gap: 1vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .input-bar {
+    width: 85vw;
+    max-width: 100%;
+    font-size: 2.8vw;
+    margin-top: 0;
+  }
+
+  .main-inp-div {
+    width: 90vw;
+    max-width: 100%;
+    margin-bottom: 1vh;
+    margin-top: 0;
+  }
+
+  .title-input-bar {
+    font-size: 4vw;
+    padding: 1.5vw;
+  }
+
+  .note-input-box {
+    font-size: 3.2vw;
+    padding: 1.5vw;
+  }
+
+  .input-buttons {
+    width: 16vw;
+    padding: 1.5vw;
+    gap: 0.8vw;
+  }
+
+  .add-button {
+    padding: 2vw;
+    font-size: 2.8vw;
+  }
+
+  .close-button {
+    padding: 1vw;
+  }
 }

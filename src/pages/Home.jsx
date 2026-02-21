@@ -6,31 +6,28 @@ import themeContext from "../components/Theme";
 import { Search } from "../components/Search";
 import { NoteOpen } from "../components/NoteOpen";
 import { useNavigate } from "react-router-dom";
+import { SideBar } from "../components/SideBar";
 
-function Home() {
+function Home({ API_URL }) {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-
-    navigate('/');
-
-    window.location.reload();
-  };
+  //sideBar logic:
+  const [sideBarOpen, setSideBarOpen] = useState(false);
 
   const { isDarkMode, toggleTheme } = useContext(themeContext);
-  
+
   const [notes, setNotes] = useState([]);
-  
+
   useEffect(() => {
     const fetchNotes = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await fetch('http://localhost:5000/notes', {
+        const response = await fetch(`${API_URL}/notes`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`,
+            'ngrok-skip-browser-warning': 'true',
           },
         });
         console.log('Response status:', response.status);
@@ -63,22 +60,28 @@ function Home() {
 
   return (
     <>
-      <div className="header-div">
-        <Search notes={notes} searchText={searchText} setSearchText={setSearchText} />
-        <button className="logout-button" onClick={handleLogout}>Log-Out</button>
-        <button className="theme-button" onClick={toggleTheme}>
-          {isDarkMode ? '⚪️' : '⚫️'}
-        </button>
+      {sideBarOpen && (
+        <div className={`side-bar-div ${isDarkMode ? 'dark': 'light'}`}>
+          <SideBar setSideBarOpen={setSideBarOpen} toggleTheme={toggleTheme} isDarkMode={isDarkMode}/>
+        </div>
+      )}
+      <div className={`header-div ${isDarkMode ? 'dark' : 'light'}`}>
+        <button
+          className="side-bar-toggle-button"
+          onClick={() => (setSideBarOpen(!sideBarOpen))}
+        >{<img src='/three-line.png' className="three-line-img" alt="icon"/>}</button>
+        <h2 className="app-name-in-header">VNote App</h2>
+        <Search notes={notes} searchText={searchText} setSearchText={setSearchText} isDarkMode={isDarkMode} />
       </div>
       <div className={`main-div ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-        <Input isDarkMode={isDarkMode} setNotes={setNotes} />
+        <Input isDarkMode={isDarkMode} setNotes={setNotes} API_URL={API_URL} />
         <div className="container">
-          <div className={`base-div ${isOpen ? 'blur': 'clean'}`}>
-            <RenderNotes notes={notes} setNotes={setNotes} searchText={searchText} isDarkMode={isDarkMode} setDisplayID={setDisplayID} setIsOpen={setIsOpen} isOpen={isOpen} />
+          <div className={`base-div ${isOpen ? 'blur' : 'clean'}`}>
+            <RenderNotes notes={notes} setNotes={setNotes} searchText={searchText} isDarkMode={isDarkMode} setDisplayID={setDisplayID} setIsOpen={setIsOpen} isOpen={isOpen} API_URL={API_URL} />
           </div>
           {isOpen && (
-            <div className={`overlay-div ${isDarkMode ? 'dark-mode': 'light-mode'}`}>
-              <NoteOpen noteToDisplay={noteToDisplay} isOpen={isOpen} setIsOpen={setIsOpen} setNotes={setNotes} displayID={displayID} isDarkMode={isDarkMode} />
+            <div className={`overlay-div ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+              <NoteOpen noteToDisplay={noteToDisplay} isOpen={isOpen} setIsOpen={setIsOpen} setNotes={setNotes} displayID={displayID} isDarkMode={isDarkMode} API_URL={API_URL} />
             </div>
           )}
         </div>

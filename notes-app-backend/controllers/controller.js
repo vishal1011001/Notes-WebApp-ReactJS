@@ -14,7 +14,8 @@ const postNote = async (req, res, next) => {
   const newNote = {
     user: req.user.id,
     title: req.body.title.trim(),
-    note: req.body.note.trim()
+    note: req.body.note.trim(),
+    isPinned: req.body.isPinned,
   };
 
   if (!newNote.title || !newNote.note) {
@@ -34,7 +35,8 @@ const putNote = async (req, res, next) => {
 
   const updateObj = {
     title: req.body.title.trim(),
-    note: req.body.note.trim()
+    note: req.body.note.trim(),
+    isPinned: req.body.isPinned,
   }
   
   const user = await userModel.findById(req.user.id);

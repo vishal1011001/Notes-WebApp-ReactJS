@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">VNote</string>
+    <string name="title_activity_main">VNote</string>
+    <string name="package_name">com.vishal.notesapp</string>
+    <string name="custom_url_scheme">com.vishal.notesapp</string>
+</resources>

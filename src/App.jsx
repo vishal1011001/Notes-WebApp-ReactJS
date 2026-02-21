@@ -2,11 +2,20 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import './App.css';
 import Home from "./pages/Home";
 import Login from './pages/Login';
+import Settings from './pages/Settings';
+import { Capacitor } from '@capacitor/core';
 
 function App() {
-  const ProtectedRoute = ({children}) => {
+  const isMobile = Capacitor.isNativePlatform();
+  const API_URL = isMobile ? 
+    'https://subcortically-nongenetical-kanesha.ngrok-free.dev' :
+    'http://localhost:5000';
+
+  console.log(API_URL);
+
+  const ProtectedRoute = ({ children }) => {
     const token = localStorage.getItem('token');
-    
+
     return token ? children : <Navigate to='/login' />;
   }
 
@@ -14,14 +23,16 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/login' element={<Login />} />
+        <Route path='/settings' element={<Settings />} />
 
-        <Route path='/' 
+        <Route path='/login' element={<Login API_URL={API_URL}/>} />
+
+        <Route path='/'
           element={
             <ProtectedRoute>
-              <Home />
+              <Home API_URL={API_URL}/>
             </ProtectedRoute>
-          } 
+          }
         />
       </Routes>
     </Router>

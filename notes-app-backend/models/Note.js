@@ -8,6 +8,7 @@ const noteSchema = mongoose.Schema({
   },
   title: {type: String, required: true},
   note: {type: String, required: true},
+  isPinned: {type: Boolean, default: false},
 });
 
 
@@ -38,7 +39,8 @@ const createNote = async (noteObj) => {
     const n1 = new noteModel({
       user: noteObj.user,
       title: noteObj.title,
-      note: noteObj.note
+      note: noteObj.note,
+      isPinned: noteObj.isPinned,
     });
 
     const result = await noteModel.insertOne(n1);
@@ -53,7 +55,8 @@ const updateNote = async (id, updateObj, userId) => {
   try {
     const result = await noteModel.updateOne({_id: id}, {
       title: updateObj.title,
-      note: updateObj.note
+      note: updateObj.note,
+      isPinned: updateObj.isPinned
     })
   } catch (error) {
     console.error('error updating note on the database: ', error);
