@@ -25,26 +25,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Clips the rotating lines */
+  overflow: hidden; 
 }
 
-/* This creates the "lines" using a conic-gradient */
 .outer-login-div::before {
   content: '';
   position: absolute;
   width: 150%;
   height: 150%;
-  /* Two distinct color segments create the "two lines" effect */
+
   background: conic-gradient(transparent, #00f2fe, transparent 30%, 
                              transparent, #4facfe, transparent 80%);
   animation: rotate 4s linear infinite;
 }
 
-/* This hides the center of the rotating gradient to form the border */
+
 .outer-login-div::after {
   content: '';
   position: absolute;
-  inset: 4px; /* Adjust thickness of the border lines here */
+  inset: 4px;
   background: #1c1c1c;
   border-radius: 16px;
 }
@@ -226,7 +225,11 @@
 
   .login-text-div {
     width: 94%;
-    min-height: 20vh;
+    height: 25vh;
+  }
+
+  .login-para {
+    padding: 0;
   }
 
   .login-form {

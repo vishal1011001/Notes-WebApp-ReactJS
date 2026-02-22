@@ -1,7 +1,6 @@
 .open-main-div {
   display: flex;
   flex-direction: column;
-  max-width: 100%;
   overflow-y: auto;
   max-height: calc(75vh - 40px);
 
@@ -11,14 +10,24 @@
   animation-fill-mode: forwards;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 
 .open-note-title {
   margin: 0;
 }
 
 .open-note-text {
-  min-height: 110px;
+  min-height: 15vh;
+  max-height: 30vh;
+  max-width: 100%;
 
+
+  overflow-y: scroll;
+  scrollbar-width:none;
+  scrollbar-color: purple;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
@@ -117,6 +126,10 @@ button {
 .edit-div {
   display: flex;
   flex-direction: column;
+
+  
+  min-height: 15vh;
+  max-height: 30vh;
 }
 
 .edit-title-bar {
@@ -142,6 +155,9 @@ button {
   font-size: 16px;
   outline: none;
   border: none;
+
+  min-height: 25vh;
+
 
   transition: background-color 0.3s ease, color 0.3s ease;
 }

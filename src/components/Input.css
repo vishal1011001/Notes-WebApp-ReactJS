@@ -86,8 +86,8 @@
 }
 
 .note-input-box {
-  font-size: 16px;
-
+  font-size: 18px;
+  height: 20vh;
   border: none;
   border-radius: 10px;
   padding: 10px;
@@ -106,7 +106,7 @@
   justify-content:space-between;
   justify-self: center;
   align-self: center;
-  width: 85%;
+  width: 90%;
   padding: 10px;
 
   border-top-color: black;
@@ -114,33 +114,59 @@
   border-width: 0.5px;
 }
 
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 .add-button {
-  width: 4vw;
+  --angle: 320deg;
+
+  width: 5.5vw;
+  height: 5.5vh;
+  align-self: center;
   color: white;
-  font-size: 15px;
+  font-size: 18px;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
-  background-color: rgb(100, 5, 188);
+  background-image: linear-gradient(var(--angle), rgb(137, 48, 197), rgb(198, 60, 177), pink);
+  /* background-color: rgb(98, 0, 184); */
   border: rgb(151, 53, 243);
-  padding: 10px;
-  border-radius: 8px;
+  padding: 0;
+  border-radius: 10px;
 
-  transition: opacity 0.15s;
+  transition: 0.35s ease, --angle 0.15s linear;
 }
 .add-button:hover {
-  opacity: 0.7;
+  --angle: 200deg;
+  width: 6.5vw;
 }
 .add-button:active {
   opacity: 0.5;
 }
 
+/* ai */
 .input-ai-button {
   border: none;
   background-color: transparent;
-  padding: 0;
-  box-shadow: 0px 0px 1px black;
-  width: 3vw;
-  border-radius: 0.5vw;
+  padding: 4px;
+  border-radius: 50%;
+
+  transition: 0.3s ease;
+}
+.input-ai-button:hover {
+  background-image: linear-gradient(90deg, rgba(4, 187, 248, 0.2), rgba(0, 128, 255, 0.2), rgba(128, 0, 128, 0.2));
+
+}
+.gemini-logo-img {
+  --angle: 0deg;
+  rotate: var(--angle);
+
+  transition: rotate 0.3s linear;
+}
+.gemini-logo-img:hover {
+  --angle: 90deg;
 }
 
 .input-pin-button {
@@ -181,12 +207,16 @@
   font-size: 18px;
   width: 73%;
   margin-left: 1vw;
-  box-shadow: 0px 0px 3px rgb(21, 0, 255);
+  box-shadow: 0px 0px 1px blue;
+
+  background-color: rgb(253, 249, 255);
+}
+.prompt-bar:focus {
+  box-shadow: 0px 0px 2px rgb(21, 0, 255);
 }
 
 .ai-prompt-send-button{
   width: 3.5vw;
-  font-size: 16px;
   background-color: transparent;
   margin-right: 1vw;
   /* background-image: linear-gradient(80deg, rgb(0, 102, 255), rgb(0, 102, 255), rgb(203, 113, 203)); */
@@ -304,17 +334,50 @@
   }
 
   .input-buttons {
-    width: 16vw;
-    padding: 1.5vw;
-    gap: 0.8vw;
+    width: 90%;
+    padding: 2vw;
   }
 
   .add-button {
-    padding: 2vw;
-    font-size: 2.8vw;
+    width: 25%;
+  }
+  .add-button:hover {
+    width: 30%;
   }
 
   .close-button {
     padding: 1vw;
+  }
+
+  .input-buttons button {
+    height: 4vh;
+  }
+
+  .input-ai-button {
+    padding: 0.5vw;
+  }
+
+  .gemini-logo-img {
+    height: 3.5vh;
+  }
+
+  .input-ai-div {
+    width: 90%;
+    padding: 1vh;
+
+    justify-self: center;
+    align-self: center;
+  }
+  .prompt-bar {
+    width: 83%;
+    height: 80%;
+    margin: 0;
+  }
+  .ai-prompt-send-button {
+    width: 8vw;
+    background-color: transparent;
+  }
+  .ai-prompt-send-button:hover{
+    background-color: transparent;
   }
 }

@@ -1,0 +1,73 @@
+.settings-main-div {
+  z-index: inherit;
+  height: 100%;
+  width: 100%;
+}
+.settings-main-div.dark {
+  background-color: rgb(20,20,20);
+  color: white;
+}
+.settings-main-div.dark button {
+  color: white;
+}
+.settings-main-div.dark button:hover,
+.settings-main-div.dark button:focus {
+  background-color: rgb(31, 31, 31);
+}
+
+.different-settings-toggle-bar {
+  display: flex;
+  width: 50%;
+  height: 10%;
+  justify-content: space-between;
+  justify-self: center;
+}
+
+.different-settings-toggle-bar button {
+  padding: 20px 25px;
+  background-color: transparent;
+  border: none;
+  border-bottom-color: transparent;
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+}
+
+.different-settings-toggle-bar button:hover,
+.different-settings-toggle-bar button:focus {
+  background-color: rgb(236, 236, 236);
+  border-bottom-color: orange;
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+}
+
+
+.settings-close-button {
+  position: absolute;
+  top: 3%;
+  right: 2%;
+
+  font-size: 15px;
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  transition: 0.15s ease;
+}
+.settings-close-button:hover {
+  background-color: rgb(236, 236, 236);
+}
+
+@media (max-width: 480px) {
+  .settings-main-div {
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+
+  .different-settings-toggle-bar {
+    width: 80%;
+    justify-content:center;
+  }
+
+  .different-settings-toggle-bar button {
+    padding: 2vh 5vw;
+  }
+}

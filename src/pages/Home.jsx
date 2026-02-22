@@ -7,6 +7,7 @@ import { Search } from "../components/Search";
 import { NoteOpen } from "../components/NoteOpen";
 import { useNavigate } from "react-router-dom";
 import { SideBar } from "../components/SideBar";
+import { Settings } from "../components/Settings";
 
 function Home({ API_URL }) {
   const navigate = useNavigate();
@@ -57,19 +58,21 @@ function Home({ API_URL }) {
 
   const noteToDisplay = notes.find(note => note.id === displayID);
 
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
 
   return (
     <>
       {sideBarOpen && (
-        <div className={`side-bar-div ${isDarkMode ? 'dark': 'light'}`}>
-          <SideBar setSideBarOpen={setSideBarOpen} toggleTheme={toggleTheme} isDarkMode={isDarkMode}/>
+        <div className={`side-bar-div ${isDarkMode ? 'dark' : 'light'}`}>
+          <SideBar setSideBarOpen={setSideBarOpen} toggleTheme={toggleTheme} isDarkMode={isDarkMode} setIsSettingsOpen={setIsSettingsOpen} />
         </div>
       )}
       <div className={`header-div ${isDarkMode ? 'dark' : 'light'}`}>
         <button
           className="side-bar-toggle-button"
           onClick={() => (setSideBarOpen(!sideBarOpen))}
-        >{<img src='/three-line.png' className="three-line-img" alt="icon"/>}</button>
+        >{<img src='/three-line.png' className="three-line-img" alt="icon" />}</button>
         <h2 className="app-name-in-header">VNote App</h2>
         <Search notes={notes} searchText={searchText} setSearchText={setSearchText} isDarkMode={isDarkMode} />
       </div>
@@ -82,6 +85,11 @@ function Home({ API_URL }) {
           {isOpen && (
             <div className={`overlay-div ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
               <NoteOpen noteToDisplay={noteToDisplay} isOpen={isOpen} setIsOpen={setIsOpen} setNotes={setNotes} displayID={displayID} isDarkMode={isDarkMode} API_URL={API_URL} />
+            </div>
+          )}
+          {isSettingsOpen && (
+            <div className={`settings-overlay-div ${isDarkMode ? 'dark' : 'light'}`}>
+              <Settings setIsSettingsOpen={setIsSettingsOpen} isDarkMode={isDarkMode} />
             </div>
           )}
         </div>

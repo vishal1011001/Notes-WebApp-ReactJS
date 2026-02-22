@@ -52,6 +52,9 @@ export function Input({ isDarkMode, setNotes, API_URL }) {
 
     setNoteInput('');
     setTitleInput('');
+    setPrompt('');
+    setIsAiDisOpen(false);
+    setShouldBePinned(false);
     setIsExpanded(false);
   }
 
@@ -59,6 +62,8 @@ export function Input({ isDarkMode, setNotes, API_URL }) {
     setIsExpanded(false);
     setNoteInput('');
     setTitleInput('');
+    setIsAiDisOpen(false);
+    setPrompt('');
   }
 
   const handleKeyDown = (event) => {
@@ -158,7 +163,7 @@ export function Input({ isDarkMode, setNotes, API_URL }) {
         >Add</button>
         <button className="input-ai-button"
           onClick={openAiDiv}
-        ><img src="/gemini-logo.png" height={40} /></button>
+        ><img className="gemini-logo-img" src="/gemini-logo.png" height={40} /></button>
         <button className={`input-pin-button ${shouldBePinned ? 'pinned' : 'notpinned'}`}
           onClick={() => (setShouldBePinned(!shouldBePinned))}
         ><img src="/pin.png" height={25}/></button>

@@ -1,10 +1,7 @@
 import express from 'express';
-import path from 'path';
-import url from 'url';
 import notesRouter from './routes/notes-router.js';
 import userRouter from './routes/user-router.js';
 import cors from 'cors';
-import mongoose from 'mongoose';
 import connectDB from './db/connectDB.js';
 import aiRouter from './routes/ai.js';
 

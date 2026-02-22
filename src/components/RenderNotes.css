@@ -24,11 +24,14 @@
   border-style: solid;
   border-radius: 10px;
   padding: 10px;
+
   
   position: relative;
   
   min-width: 23vw;
   min-height: 15vh;
+  max-height: 23vh;
+  overflow: hidden;
 
   transition: box-shadow 0.15s;
 
@@ -55,7 +58,7 @@
   overflow-wrap: break-word;
   word-wrap: break-word;
   
-  max-width: 100%;
+  max-width: 90%;
 }
 
 .note-text {
@@ -99,15 +102,8 @@
   }
 }
 
-/* MOBILE RESPONSIVENESS */
-/* @media (max-width: 1024px) {
-  .note-div {
-    flex-basis: calc(100%/2);
-    min-width: 45vw;
-  }
-} */
 
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
   .not-pinned-notes-div,
   .pinned-notes-div {
     gap: 2vw;
@@ -131,7 +127,7 @@
   .note-text {
     font-size: 3.5vw;
   }
-} */
+}
 
 @media (max-width: 480px) {
   .not-pinned-notes-div,

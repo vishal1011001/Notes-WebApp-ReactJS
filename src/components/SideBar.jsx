@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import './SideBar.css';
 
-export function SideBar({toggleTheme,isDarkMode}) {
+export function SideBar({toggleTheme,isDarkMode, setIsSettingsOpen}) {
   const navigate = useNavigate();
 
   const navToSettings = () => {
-    navigate('/settings');
+    setIsSettingsOpen(true);
   }
 
   const handleLogout = () => {

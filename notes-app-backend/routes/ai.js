@@ -14,7 +14,7 @@ aiRouter.post('/generate-text', async (req, res) => {
 
     const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
-    const result = await model.generateContent(prompt + '. Keep the response short and concise');
+    const result = await model.generateContent(prompt + '. Keep the response short and concise. Keep the text form plain, dont add bold or italics. You may add numbering and paragraph changes though.');
     const text = result.response.text();
 
     console.log(text);

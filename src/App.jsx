@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import './App.css';
 import Home from "./pages/Home";
 import Login from './pages/Login';
-import Settings from './pages/Settings';
 import { Capacitor } from '@capacitor/core';
 
 function App() {
@@ -10,6 +9,8 @@ function App() {
   const API_URL = isMobile ? 
     'https://subcortically-nongenetical-kanesha.ngrok-free.dev' :
     'http://localhost:5000';
+
+  // const API_URL = 'https://subcortically-nongenetical-kanesha.ngrok-free.dev';
 
   console.log(API_URL);
 
@@ -23,7 +24,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/settings' element={<Settings />} />
 
         <Route path='/login' element={<Login API_URL={API_URL}/>} />
 
