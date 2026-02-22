@@ -102,8 +102,15 @@
   }
 }
 
+/* MOBILE RESPONSIVENESS */
+/* @media (max-width: 1024px) {
+  .note-div {
+    flex-basis: calc(100%/2);
+    min-width: 45vw;
+  }
+} */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .not-pinned-notes-div,
   .pinned-notes-div {
     gap: 2vw;
@@ -127,7 +134,7 @@
   .note-text {
     font-size: 3.5vw;
   }
-}
+} */
 
 @media (max-width: 480px) {
   .not-pinned-notes-div,

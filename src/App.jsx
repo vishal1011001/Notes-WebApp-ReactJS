@@ -6,11 +6,11 @@ import { Capacitor } from '@capacitor/core';
 
 function App() {
   const isMobile = Capacitor.isNativePlatform();
-  const API_URL = isMobile ? 
-    'https://subcortically-nongenetical-kanesha.ngrok-free.dev' :
-    'http://localhost:5000';
+  // const API_URL = isMobile ? 
+  //   'https://subcortically-nongenetical-kanesha.ngrok-free.dev' :
+  //   'http://localhost:5000';
 
-  // const API_URL = 'https://subcortically-nongenetical-kanesha.ngrok-free.dev';
+  const API_URL = 'https://subcortically-nongenetical-kanesha.ngrok-free.dev';
 
   console.log(API_URL);
 
