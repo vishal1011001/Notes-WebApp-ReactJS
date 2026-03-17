@@ -93,10 +93,10 @@ export function Input({ isDarkMode, setNotes, API_URL }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({"prompt": prompt}),
+        body: JSON.stringify({ "prompt": prompt }),
       });
 
-      if(response.ok) {
+      if (response.ok) {
         const data = await response.json();
         setNoteInput(noteInput + '\n' + data.text);
         console.log("ai Response fetched", data);
@@ -104,13 +104,17 @@ export function Input({ isDarkMode, setNotes, API_URL }) {
         throw new Error('Error Fetching response');
       }
 
-      if(titleInput == '') {
+      if (titleInput == '') {
         setTitleInput(prompt);
       }
 
     } catch (error) {
       console.error("Error Generating response by gemini:", error);
     }
+  }
+
+  const handleDiscard = () => {
+    setNoteInput('');
   }
 
   if (!isExpanded) {
@@ -144,6 +148,7 @@ export function Input({ isDarkMode, setNotes, API_URL }) {
           onChange={saveNoteInput}
           onKeyDown={handleKeyDown}
         />
+        
       </div>
       {isAiDivOpen && (
         <div className="input-ai-div">
@@ -161,13 +166,22 @@ export function Input({ isDarkMode, setNotes, API_URL }) {
           className="add-button"
           onClick={addNote}
         >Add</button>
+
         <button className="input-ai-button"
           onClick={openAiDiv}
         ><img className="gemini-logo-img" src="/gemini-logo.png" height={40} /></button>
-        <button className={`input-pin-button ${shouldBePinned ? 'pinned' : 'notpinned'}`}
+        
+        <button className={`input-pin-button ${isDarkMode ? 'dark' : 'light'}`}
           onClick={() => (setShouldBePinned(!shouldBePinned))}
-        ><img src="/pin.png" height={25}/></button>
+        ><img src={shouldBePinned ? '/pin.png' : '/not-pinned-icon.png'} height={28} /></button>
+       
         <button className={`close-button ${isDarkMode ? 'dark' : 'light'}`} 
+          onClick={handleDiscard}
+        >
+          Discard
+        </button>
+        
+        <button className={`close-button ${isDarkMode ? 'dark' : 'light'}`}
           onClick={closeEditor}
         >Close</button>
       </div>

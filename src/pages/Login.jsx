@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Login.css';
 
-function Login({ API_URL }) {
+function Login({ API_URL, setUserInfo }) {
   const [hasLoginFailed, setHasLoginFailed] = useState(false);
   const [wantToLogin, setWantToLogin] = useState(true);
   const [userName, setUserName] = useState('');
@@ -20,6 +20,13 @@ function Login({ API_URL }) {
       password: password
     }
 
+    const userInfo = {
+      userName: credentials.userName,
+      email: credentials.email
+    }
+    setUserInfo(userInfo);
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+
     try {
       const response = await fetch(`${API_URL}/users/register`, {
         method: 'POST',
@@ -34,7 +41,7 @@ function Login({ API_URL }) {
         const data = await response.json();
 
         localStorage.setItem('token', data.token);
-        console.log(localStorage.getItem('token'));
+        // console.log(localStorage.getItem('token'));
 
         navigate('/');
       } else {
@@ -54,6 +61,14 @@ function Login({ API_URL }) {
         email: email,
         password: password,
       }
+
+      const userInfo = {
+        userName: credentials.userName,
+        email: credentials.email
+      }
+      setUserInfo(userInfo);
+      localStorage.setItem('userInfo', JSON.stringify(userInfo));
+
 
       const response = await fetch(`${API_URL}/users/login`, {
         method: 'POST',
@@ -82,17 +97,18 @@ function Login({ API_URL }) {
 
   return (
     <div className="login-page-main">
-      <div className="outer-login-div"> 
+      <div className="outer-login-div">
         <div className="login-text-div">
-          <h1 style={{ 'color': 'white', 'margin-top': '0px', 
+          <h1 style={{
+            'color': 'white', 'margin-top': '0px',
             'fontFamily': "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"
-           }}>Welcome to VNote</h1>
+          }}>Welcome to VNote</h1>
           <p className="login-para">
             • Jot down your thoughts <br></br>
             • Note down important stuff <br></br>
             • Create Todos effortlessly <br></br>
           </p>
-          <p style={{'color':'white', 'align-self':'bottom'}}>Now with AI-text-generation</p>
+          <p style={{ 'color': 'white', 'align-self': 'bottom' }}>Now with AI-text-generation</p>
         </div>
         <div className="login-div">
           <h3 style={{ 'align-self': 'center', 'margin-bottom': '25px' }}>{wantToLogin ? 'User Login' : 'Create New Account'}</h3>

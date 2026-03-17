@@ -3,6 +3,7 @@ import './App.css';
 import Home from "./pages/Home";
 import Login from './pages/Login';
 import { Capacitor } from '@capacitor/core';
+import { useState } from 'react';
 
 function App() {
   const isMobile = Capacitor.isNativePlatform();
@@ -20,17 +21,19 @@ function App() {
     return token ? children : <Navigate to='/login' />;
   }
 
+  const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem('userInfo')) || {});
+
 
   return (
     <Router>
       <Routes>
 
-        <Route path='/login' element={<Login API_URL={API_URL}/>} />
+        <Route path='/login' element={<Login API_URL={API_URL} setUserInfo={setUserInfo} />} />
 
         <Route path='/'
           element={
             <ProtectedRoute>
-              <Home API_URL={API_URL}/>
+              <Home API_URL={API_URL} userInfo={userInfo} />
             </ProtectedRoute>
           }
         />

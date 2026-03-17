@@ -8,8 +8,9 @@ import { NoteOpen } from "../components/NoteOpen";
 import { useNavigate } from "react-router-dom";
 import { SideBar } from "../components/SideBar";
 import { Settings } from "../components/Settings";
+import { UserProfile } from "../components/UserProfile";
 
-function Home({ API_URL }) {
+function Home({ API_URL, userInfo }) {
   const navigate = useNavigate();
 
   //sideBar logic:
@@ -61,6 +62,13 @@ function Home({ API_URL }) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
 
+  //user profile
+  const [userProfileOpen, setUserProfileOpen] = useState(false);
+  const handleUserProfileOpen = () => {
+    setUserProfileOpen(!userProfileOpen);
+    console.log(userInfo);
+  }
+
   return (
     <>
       {sideBarOpen && (
@@ -75,6 +83,11 @@ function Home({ API_URL }) {
         >{<img src='/three-line.png' className="three-line-img" alt="icon" />}</button>
         <h2 className="app-name-in-header">VNote App</h2>
         <Search notes={notes} searchText={searchText} setSearchText={setSearchText} isDarkMode={isDarkMode} />
+        <div className="user-profile-icon"
+          onClick={handleUserProfileOpen}
+        >
+          <img src="/user.png" height={30}></img>
+        </div>
       </div>
       <div className={`main-div ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
         <Input isDarkMode={isDarkMode} setNotes={setNotes} API_URL={API_URL} />
@@ -89,10 +102,15 @@ function Home({ API_URL }) {
           )}
           {isSettingsOpen && (
             <div className={`settings-overlay-div ${isDarkMode ? 'dark' : 'light'}`}>
-              <Settings setIsSettingsOpen={setIsSettingsOpen} isDarkMode={isDarkMode} />
+              <Settings setIsSettingsOpen={setIsSettingsOpen} isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
             </div>
           )}
         </div>
+        {userProfileOpen && (
+          <div className="user-profile-overlay">
+            <UserProfile userInfo={userInfo} />
+          </div>
+        )}
       </div>
     </>
   );

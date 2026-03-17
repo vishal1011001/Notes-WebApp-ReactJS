@@ -165,7 +165,7 @@ export function NoteOpen({ noteToDisplay, isOpen, setIsOpen, setNotes, displayID
           <button
             className="open-pin-button"
             onClick={pinToggle}
-          ><img className='open-pin-img' src='/pin.png' height={25} /></button>
+          ><img className={`open-pin-img ${isDarkMode ? 'dark' : 'light'}`} src={pinCondition ? '/pin.png' : '/not-pinned-icon.png'} height={25} /></button>
         )}
 
         <button className={`close-button ${isDarkMode ? 'dark' : 'light'}`}

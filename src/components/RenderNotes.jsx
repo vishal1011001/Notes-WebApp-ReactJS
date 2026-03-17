@@ -66,7 +66,7 @@ export function RenderNotes({ notes, setNotes, searchText, isDarkMode, setDispla
     <div>
       {(pinnedNotes.length !== 0) && (
       <div className='pinned-notes-div'>
-        <h3 className='notes-h3-heading'>Pinned Notes <img src='/pin.png' height={15} /></h3>
+        <h3 className='notes-h3-heading'>Pinned Notes <img src='/yellow-pin.png' height={30} /></h3>
         {pinnedNotes.map((note) => (
           <div key={note.id} className={`note-div ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
             onClick={() => noteOpened(note.id)} >
@@ -91,7 +91,7 @@ export function RenderNotes({ notes, setNotes, searchText, isDarkMode, setDispla
                 e.stopPropagation();
                 pinNoteToggle(note.id)
               }}
-            ><img className='pin-img' src='/pin.png' height={20} /></button>
+            ><img className='pin-img' src='/not-pinned-icon.png' height={20} /></button>
             <h3 className="note-title">{note.title}</h3>
             <p className='note-text'>{note.note}</p>
           </div>

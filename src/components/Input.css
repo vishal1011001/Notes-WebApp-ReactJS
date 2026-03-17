@@ -157,7 +157,6 @@
 }
 .input-ai-button:hover {
   background-image: linear-gradient(90deg, rgba(4, 187, 248, 0.2), rgba(0, 128, 255, 0.2), rgba(128, 0, 128, 0.2));
-
 }
 .gemini-logo-img {
   --angle: 0deg;
@@ -172,13 +171,12 @@
 .input-pin-button {
   background-color: transparent;
   border: none;
-  opacity: 0.7;
+}
+.input-pin-button.dark {
+  filter: invert(100%);
 }
 .input-pin-button:hover {
   opacity: 0.85;
-}
-.input-pin-button.pinned {
-  opacity: 1;
 }
 
 .input-ai-div {
@@ -250,6 +248,23 @@
 
 .close-button:active {
   opacity: 0.5;
+}
+
+.discard-button {
+  background-color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 0.5vw;
+  max-width: 25%;
+  align-self: flex-end;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+.discard-button:hover {
+  background-color: rgb(217, 217, 217);
+}
+.discard-button:active {
+  background-color: gray;
 }
 
 /* MOBILE RESPONSIVENESS */

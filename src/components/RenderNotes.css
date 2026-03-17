@@ -44,6 +44,9 @@
 .note-div.dark-mode {
   border-color: rgb(235, 191, 255);
 }
+.note-div.dark-mode .pin-button {
+  filter: invert(100%);
+}
 
 .note-div:hover {
   box-shadow: 0px 0px 3px purple;
@@ -80,9 +83,11 @@
 .notes-h3-heading {
   width: 100%;
   padding-left: 10vw;
+  display: flex;
+  align-items: center;
 }
 .note-div:hover .pin-img {
-  opacity: 0.6;
+  opacity: 0.7;
 }
 .pin-img {
   opacity: 0;

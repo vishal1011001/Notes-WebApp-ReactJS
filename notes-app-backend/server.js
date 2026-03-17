@@ -13,7 +13,7 @@ const DATABASE_URL = process.env.DATABASE_URL;
 app.use(cors({
   origin: [
     'http://localhost:5173', // Web testing
-    'http://10.209.245.14:5173',
+    'http://10.151.225.14:5173', 
     'http://localhost:3000', // Web testing CRA
     'https://localhost',      // Android Capacitor default
     'http://localhost',      // Android Capacitor default
