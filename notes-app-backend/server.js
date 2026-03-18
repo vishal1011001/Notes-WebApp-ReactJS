@@ -10,21 +10,22 @@ const app = express();
 const PORT = process.env.PORT;
 const DATABASE_URL = process.env.DATABASE_URL;
 
-app.use(cors({
-  origin: [
-    'http://localhost:5173', // Web testing
-    'http://10.151.225.14:5173', 
-    'http://localhost:3000', // Web testing CRA
-    'https://localhost',      // Android Capacitor default
-    'http://localhost',      // Android Capacitor default
-    'capacitor://localhost',  // iOS Capacitor default
-    'https://subcortically-nongenetical-kanesha.ngrok-free.dev',
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
-}));
+// app.use(cors({
+//   origin: [
+//     'http://localhost:5173', // Web testing
+//     'http://10.151.225.14:5173', 
+//     'http://localhost:3000', // Web testing CRA
+//     'https://localhost',      // Android Capacitor default
+//     'http://localhost',      // Android Capacitor default
+//     'capacitor://localhost',  // iOS Capacitor default
+//     'https://subcortically-nongenetical-kanesha.ngrok-free.dev',
+//   ],
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
+// }));
 
+app.use(cors());
 app.use(express.json());
 app.use(notesRouter);
 app.use(userRouter);

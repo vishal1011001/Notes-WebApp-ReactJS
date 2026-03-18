@@ -11,7 +11,9 @@ function App() {
   //   'https://subcortically-nongenetical-kanesha.ngrok-free.dev' :
   //   'http://localhost:5000';
 
-  const API_URL = 'https://subcortically-nongenetical-kanesha.ngrok-free.dev';
+  // const API_URL = 'https://subcortically-nongenetical-kanesha.ngrok-free.dev';
+
+  const API_URL = 'https://notes-webapp-reactjs-1.onrender.com';
 
   console.log(API_URL);
 
