@@ -7,19 +7,11 @@ import aiRouter from './routes/ai.js';
 
 const app = express();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 const DATABASE_URL = process.env.DATABASE_URL;
 
-app.use(cors({
-  origin: [
-    'http://localhost:5173', // Local development
-    'http://10.151.225.14:5173', // Local network
-    'http://localhost:3000', // Alternative local port
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors());
+
 app.use(express.json());
 app.use(notesRouter);
 app.use(userRouter);
@@ -27,7 +19,7 @@ app.use(aiRouter);
 
 connectDB(DATABASE_URL);
 
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, () => {
   console.log(`server running at port ${PORT}`);
 })
 
