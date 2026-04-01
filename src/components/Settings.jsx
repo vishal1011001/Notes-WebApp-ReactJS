@@ -1,5 +1,5 @@
 import './Settings.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function Settings({ setIsSettingsOpen, isDarkMode, toggleTheme }) {
 
@@ -22,34 +22,39 @@ export function Settings({ setIsSettingsOpen, isDarkMode, toggleTheme }) {
     value: 'large'
   }];
 
-  const sortOptions = [{
-    label: 'Last Modified',
-    value: 'lastModified'
-  }, {
-    label: 'Date Created',
-    value: 'dateCreated'
-  }, {
-    label: 'Alphabetical',
-    value: 'alphabetical'
-  }];
 
   const [selectedThemePref, setSelectedThemePref] = useState('Light');
   const [selectedFontSize, setSelectedFontSize] = useState('Medium');
   const [autoSaveEnabled, setAutoSaveEnabled] = useState(true);
-  const [selectedSortOrder, setSelectedSortOrder] = useState('Last Modified');
 
   const changeThemePref = (e) => {
     setSelectedThemePref(e.target.value);
-    
-    const checkVal = isDarkMode ? 'dark' : 'light';
-    if( checkVal !== selectedThemePref ) {
+
+    const checkVal = isDarkMode ? 'light' : 'dark';
+    if (checkVal !== selectedThemePref) {
       toggleTheme();
-    } 
+    }
   };
 
+  const fontSizeMap = {
+    'small': '14px',
+    'medium': '16px',
+    'large': '18px'
+  };
+
+  useEffect(() => {
+    const savedSize = localStorage.getItem('fontSize') || 'medium';
+    setSelectedFontSize(savedSize);
+
+    document.documentElement.style.setProperty('--base-font-size', fontSizeMap[savedSize]);
+
+  }, []);
+
   const changeFontSize = (e) => {
-    setSelectedFontSize(e.target.value);
-    // Apply font size to app
+    const newSize = e.target.value;
+    setSelectedFontSize(newSize);
+    document.documentElement.style.setProperty('--base-font-size', fontSizeMap[newSize]);
+    localStorage.setItem('fontSize', newSize);
   };
 
   const toggleAutoSave = () => {
@@ -57,10 +62,6 @@ export function Settings({ setIsSettingsOpen, isDarkMode, toggleTheme }) {
     //Implement auto-save logic
   };
 
-  const changeSortOrder = (e) => {
-    setSelectedSortOrder(e.target.value);
-    //Apply sort order to notes list
-  };
 
   return (
     <div className={`settings-main-div ${isDarkMode ? 'dark' : 'light'}`}>
@@ -73,7 +74,7 @@ export function Settings({ setIsSettingsOpen, isDarkMode, toggleTheme }) {
           <label >
             <select value={selectedThemePref} onChange={changeThemePref} className='theme-options-dropdown'>
               {themeOptions.map((opt) => (
-                <option key={opt.value} value={themeOptions.value}>
+                <option key={opt.value} value={opt.value}>
                   {opt.label}
                 </option>
               ))}
@@ -82,11 +83,11 @@ export function Settings({ setIsSettingsOpen, isDarkMode, toggleTheme }) {
         </div>
 
         <div className='theme-options-div'>
-          <h3>Font Size</h3> 
+          <h3>Font Size</h3>
           <label>
             <select value={selectedFontSize} onChange={changeFontSize} className='theme-options-dropdown'>
               {fontSizeOptions.map((opt) => (
-                <option key={opt.value} value={opt.label}>
+                <option key={opt.value} value={opt.value}>
                   {opt.label}
                 </option>
               ))}
@@ -95,28 +96,15 @@ export function Settings({ setIsSettingsOpen, isDarkMode, toggleTheme }) {
         </div>
 
         <div className='theme-options-div'>
-          <h3>Auto-Save</h3> 
+          <h3>Auto-Save</h3>
           <label>
-            <input 
-              type="checkbox" 
-              checked={autoSaveEnabled} 
+            <input
+              type="checkbox"
+              checked={autoSaveEnabled}
               onChange={toggleAutoSave}
               style={{ marginRight: '0.5vw', cursor: 'pointer' }}
             />
             <span>{autoSaveEnabled ? 'Enabled' : 'Disabled'}</span>
-          </label>
-        </div>
-
-        <div className='theme-options-div'>
-          <h3>Default Sort Order</h3> 
-          <label>
-            <select value={selectedSortOrder} onChange={changeSortOrder} className='theme-options-dropdown'>
-              {sortOptions.map((opt) => (
-                <option key={opt.value} value={opt.label}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
           </label>
         </div>
 

@@ -32,11 +32,9 @@ function Home({ API_URL, userInfo }) {
             'ngrok-skip-browser-warning': 'true',
           },
         });
-        console.log('Response status:', response.status);
 
         if (response.ok) {
           const data = await response.json();
-          console.log('Fetched data:', data);
           setNotes(data);
         } else {
           console.error('Response not ok:', response.status);
@@ -66,7 +64,6 @@ function Home({ API_URL, userInfo }) {
   const [userProfileOpen, setUserProfileOpen] = useState(false);
   const handleUserProfileOpen = () => {
     setUserProfileOpen(!userProfileOpen);
-    console.log(userInfo);
   }
 
   return (

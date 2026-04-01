@@ -3,7 +3,7 @@ import './App.css';
 import Home from "./pages/Home";
 import Login from './pages/Login';
 import { Capacitor } from '@capacitor/core';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   const isMobile = Capacitor.isNativePlatform();
@@ -15,8 +15,6 @@ function App() {
 
   const API_URL = 'https://notes-webapp-reactjs-1.onrender.com';
 
-  console.log(API_URL);
-
   const ProtectedRoute = ({ children }) => {
     const token = localStorage.getItem('token');
 
@@ -24,6 +22,17 @@ function App() {
   }
 
   const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem('userInfo')) || {});
+
+  // Load saved font size on app mount
+  useEffect(() => {
+    const savedSize = localStorage.getItem('fontSize') || 'medium';
+    const fontSizeMap = {
+      'small': '14px',
+      'medium': '16px',
+      'large': '18px'
+    };
+    document.documentElement.style.setProperty('--base-font-size', fontSizeMap[savedSize]);
+  }, []);
 
 
   return (

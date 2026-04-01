@@ -229,14 +229,19 @@ body,
 .user-profile-overlay {
   position: fixed;
   right: 1vw;
-  top: 10vh;
-  border:none;
+  top: 10.5vh;
+  
   z-index: 10;
-  padding: 3vw;
+  padding: 2vw;
   width: 15vw;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0px 0px 5px purple;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-width: 2px;
+  border-color: purple;
+  border-style: solid;
+  border-top: 0;
 
   animation-name: userProfileAnimation;
   animation-duration: 0.3s;

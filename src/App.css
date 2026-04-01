@@ -1,0 +1,7 @@
+:root {
+  --base-font-size: 16px;
+}
+
+body, html {
+  font-size: var(--base-font-size);
+}
