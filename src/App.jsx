@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Login from './pages/Login';
 import { Capacitor } from '@capacitor/core';
 import { useState, useEffect } from 'react';
+import HelpPage from './pages/HelpPage';
 
 function App() {
   const isMobile = Capacitor.isNativePlatform();
@@ -48,6 +49,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path='/help' element={<HelpPage API_URL={API_URL} />} />
       </Routes>
     </Router>
   );

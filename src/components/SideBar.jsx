@@ -8,6 +8,10 @@ export function SideBar({toggleTheme,isDarkMode, setIsSettingsOpen}) {
     setIsSettingsOpen(true);
   }
 
+  const navToHelpPage = () => {
+    navigate('/help');
+  }
+
   const handleLogout = () => {
     localStorage.removeItem('token');
 
@@ -25,7 +29,7 @@ export function SideBar({toggleTheme,isDarkMode, setIsSettingsOpen}) {
         {isDarkMode ? '⚪️ Light Mode' : '⚫️ Dark Mode'}
       </button>
       <button className="logout-button" onClick={handleLogout}><img src='/exit.png' height={'25'} style={{'margin-right': '10px' }} />Log-Out</button>
-      <button className='help-button'><img src='/support.png' height={'25'} style={{'margin-right': '10px' }} />Help?</button>
+      <button className='help-button' onClick={navToHelpPage} ><img src='/support.png' height={'25'} style={{'margin-right': '10px' }} />Help?</button>
     </div>
   );
 }

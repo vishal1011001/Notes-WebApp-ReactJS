@@ -94,20 +94,6 @@ export function Settings({ setIsSettingsOpen, isDarkMode, toggleTheme }) {
             </select>
           </label>
         </div>
-
-        <div className='theme-options-div'>
-          <h3>Auto-Save</h3>
-          <label>
-            <input
-              type="checkbox"
-              checked={autoSaveEnabled}
-              onChange={toggleAutoSave}
-              style={{ marginRight: '0.5vw', cursor: 'pointer' }}
-            />
-            <span>{autoSaveEnabled ? 'Enabled' : 'Disabled'}</span>
-          </label>
-        </div>
-
       </div>
 
       <button
