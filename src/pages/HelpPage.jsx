@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './HelpPage.css';
 import { useNavigate } from "react-router-dom";
-export default function HelpPage(API_URL) {
+export default function HelpPage({ API_URL }) {
   const [fbInput, setFbInput] = useState('');
   const [expandedFAQ, setExpandedFAQ] = useState(null);
 
@@ -44,16 +44,18 @@ export default function HelpPage(API_URL) {
     setExpandedFAQ(expandedFAQ === id ? null : id);
   };
 
-  const handleSend = () => {
-    const message = fbInput;
+  const handleSend = async () => {
+    const msg = fbInput;
 
     try {
-      const response = fetch(`${API_URL}/help/feedback`, {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_URL}/help/feedback`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(message),
+        body: JSON.stringify({ message: msg }),
       })
 
       if (response.ok) {

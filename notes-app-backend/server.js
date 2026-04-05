@@ -4,6 +4,7 @@ import userRouter from './routes/user-router.js';
 import cors from 'cors';
 import connectDB from './db/connectDB.js';
 import aiRouter from './routes/ai.js';
+import extraRouter from './routes/extras-router.js';
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(notesRouter);
 app.use(userRouter);
 app.use(aiRouter);
+app.use(extraRouter);
 
 connectDB(DATABASE_URL);
 

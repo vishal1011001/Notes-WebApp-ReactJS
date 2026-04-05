@@ -8,13 +8,13 @@ import HelpPage from './pages/HelpPage';
 
 function App() {
   const isMobile = Capacitor.isNativePlatform();
-  // const API_URL = isMobile ? 
-  //   'https://subcortically-nongenetical-kanesha.ngrok-free.dev' :
-  //   'http://localhost:5000';
+  const API_URL = isMobile ? 
+    'https://subcortically-nongenetical-kanesha.ngrok-free.dev' :
+    'http://localhost:5000';
 
   // const API_URL = 'https://subcortically-nongenetical-kanesha.ngrok-free.dev';
 
-  const API_URL = 'https://notes-webapp-reactjs-1.onrender.com';
+  // const API_URL = 'https://notes-webapp-reactjs-1.onrender.com';
 
   const ProtectedRoute = ({ children }) => {
     const token = localStorage.getItem('token');
